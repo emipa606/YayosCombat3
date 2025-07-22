@@ -8,7 +8,7 @@ public static class ArmorUtility
 {
     public const float MaxArmorRating = 2f;
 
-    public const float DeflectThresholdFactor = 0.5f;
+    private const float DeflectThresholdFactor = 0.5f;
 
     public static float GetPostArmorDamage(Pawn pawn, float amount, float armorPenetration, BodyPartRecord part,
         ref DamageDef damageDef, ref bool deflectedByMetalArmor, ref bool diminishedByMetalArmor, DamageInfo dinfo)
@@ -34,7 +34,7 @@ public static class ArmorUtility
                 }
 
                 var num2 = amount;
-                ApplyArmor(ref amount, armorPenetration, apparel.GetStatValue(armorRatingStat), apparel,
+                applyArmor(ref amount, armorPenetration, apparel.GetStatValue(armorRatingStat), apparel,
                     ref damageDef, pawn, out var metalArmor, dinfo, out forcedDefl);
                 if (amount < 0.001f)
                 {
@@ -51,7 +51,7 @@ public static class ArmorUtility
         }
 
         var num3 = amount;
-        ApplyArmor(ref amount, armorPenetration, pawn.GetStatValue(armorRatingStat), null, ref damageDef, pawn,
+        applyArmor(ref amount, armorPenetration, pawn.GetStatValue(armorRatingStat), null, ref damageDef, pawn,
             out var metalArmor2, dinfo, out forcedDefl);
         if (amount < 0.001f)
         {
@@ -73,7 +73,7 @@ public static class ArmorUtility
         return amount;
     }
 
-    public static void ApplyArmor(ref float damAmount, float armorPenetration, float armorRating, Thing armorThing,
+    private static void applyArmor(ref float damAmount, float armorPenetration, float armorRating, Thing armorThing,
         ref DamageDef damageDef, Pawn pawn, out bool metalArmor, DamageInfo dinfo, out bool forcedDefl)
     {
         var isArmor = false;

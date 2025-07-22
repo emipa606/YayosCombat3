@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(JobDriver_Reload), nameof(JobDriver_Reload.MakeNewToils))]
+[HarmonyPatch(typeof(JobDriver_Reload), "MakeNewToils")]
 internal class JobDriver_Reload_MakeNewToils
 {
     private static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, JobDriver_Reload __instance, Pawn ___pawn,
@@ -63,7 +63,7 @@ internal class JobDriver_Reload_MakeNewToils
             yield return item2;
         }
 
-        var toil = ToilMaker.MakeToil(nameof(JobDriver_Reload.MakeNewToils));
+        var toil = ToilMaker.MakeToil("MakeNewToils");
         toil.initAction = delegate
         {
             var carriedThing = ___pawn.carryTracker.CarriedThing;

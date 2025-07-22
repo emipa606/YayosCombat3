@@ -16,16 +16,16 @@ internal class ThingWithComps_GetFloatMenuOptions
             return;
         }
 
-        var CompApparelReloadable = __instance.TryGetComp<CompApparelReloadable>();
-        if (selPawn.IsColonist && CompApparelReloadable is { AmmoDef: not null } &&
-            !CompApparelReloadable.Props.destroyOnEmpty &&
-            CompApparelReloadable.RemainingCharges > 0)
+        var compApparelReloadable = __instance.TryGetComp<CompApparelReloadable>();
+        if (selPawn.IsColonist && compApparelReloadable is { AmmoDef: not null } &&
+            !compApparelReloadable.Props.destroyOnEmpty &&
+            compApparelReloadable.RemainingCharges > 0)
         {
             __result = new List<FloatMenuOption>
             {
-                new FloatMenuOption(
-                    "eject_AmmoAmount".Translate(CompApparelReloadable.RemainingCharges,
-                        CompApparelReloadable.AmmoDef.LabelCap), cleanWeapon, MenuOptionPriority.High)
+                new(
+                    "eject_AmmoAmount".Translate(compApparelReloadable.RemainingCharges,
+                        compApparelReloadable.AmmoDef.LabelCap), cleanWeapon, MenuOptionPriority.High)
             };
         }
 

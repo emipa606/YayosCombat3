@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <TabulaRasa.UpdateDef Abstract="true" Name="YayosCombat3_UpdateInfoBase" MayRequire="neronix17.toolbox">
+    <linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2854006492</linkUrl>
+    <banner>UpdateInfo/YayosCombat3</banner>
+  </TabulaRasa.UpdateDef>
+  <TabulaRasa.UpdateDef ParentName="YayosCombat3_UpdateInfoBase" MayRequire="neronix17.toolbox">
+    <defName>YayosCombat3_1_4_3</defName>
+    <date>2024/4/23</date>
+    <content>From 1.5 onwards the advanced animations has been removed from the mod.
+The Yayo's Animation-mod can be used for this instead as it has the same features.
+https://steamcommunity.com/sharedfiles/filedetails/?id=2877292196</content>
+  </TabulaRasa.UpdateDef>
+</Defs>

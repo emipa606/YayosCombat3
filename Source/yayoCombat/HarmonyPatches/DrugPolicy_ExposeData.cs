@@ -19,10 +19,7 @@ internal class DrugPolicy_ExposeData
             return true;
         }
 
-        if (s_entriesInt(__instance) == null)
-        {
-            s_entriesInt(__instance) = [];
-        }
+        s_entriesInt(__instance) ??= [];
 
         Scribe_Values.Look(ref __instance.id, "uniqueId");
         Scribe_Values.Look(ref __instance.label, "label");

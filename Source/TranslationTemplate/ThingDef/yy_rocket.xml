@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: rocket -->
+  <Bullet_AntiArmor_Rocket.label>rocket</Bullet_AntiArmor_Rocket.label>
+  <!-- EN: anti-armor rocket launcher -->
+  <Gun_AntiArmor_Rocket.label>anti-armor rocket launcher</Gun_AntiArmor_Rocket.label>
+  <!-- EN: It is a rocket launcher that can penetrate solid armor. -->
+  <Gun_AntiArmor_Rocket.description>It is a rocket launcher that can penetrate solid armor.</Gun_AntiArmor_Rocket.description>
+  <!-- EN: barrel -->
+  <Gun_AntiArmor_Rocket.tools.barrel.label>barrel</Gun_AntiArmor_Rocket.tools.barrel.label>
+  <!-- EN: anti-armor rocket launcher -->
+  <Gun_AntiArmor_Rocket.verbs.Verb_ShootOneUse.label>anti-armor rocket launcher</Gun_AntiArmor_Rocket.verbs.Verb_ShootOneUse.label>
+</LanguageData>

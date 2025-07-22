@@ -4,7 +4,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(CompApparelVerbOwner), nameof(CompApparelVerbOwner.CreateVerbTargetCommand))]
+[HarmonyPatch(typeof(CompApparelVerbOwner), "CreateVerbTargetCommand")]
 internal class CompApparelVerbOwner_CreateVerbTargetCommand
 {
     private static bool Prefix(ref Command_VerbTarget __result, CompApparelVerbOwner __instance, Thing gear, Verb verb)

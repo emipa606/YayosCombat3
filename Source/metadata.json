@@ -2,11 +2,18 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "2",
-  "PreviewVersion": "1.5",
+  "PreviewVersion": "1.6",
   "SocialImageSet": true,
   "SearchTags": [
     " ammo",
     "combat",
     " armor"
-  ]
+  ],
+  "Patches": true,
+  "Defs": true,
+  "Assemblies": true,
+  "LinesOfCode": 108256,
+  "LinesOfXML": 40876,
+  "CodeBaseSize": 82,
+  "LastXmlCleaning": "2025-07-22T13:53:27.2211303+02:00"
 }

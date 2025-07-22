@@ -17,13 +17,13 @@ internal class ReloadableUtility_FindSomeReloadableComponent
 
         foreach (var thing in pawn.equipment.AllEquipmentListForReading)
         {
-            var CompApparelReloadable = thing.TryGetComp<CompApparelReloadable>();
-            if (CompApparelReloadable?.NeedsReload(allowForcedReload) != true)
+            var compApparelReloadable = thing.TryGetComp<CompApparelReloadable>();
+            if (compApparelReloadable?.NeedsReload(allowForcedReload) != true)
             {
                 continue;
             }
 
-            __result = CompApparelReloadable;
+            __result = compApparelReloadable;
             return;
         }
     }

@@ -15,7 +15,7 @@ public class JobDriver_EjectAmmo : JobDriver
         return true;
     }
 
-    public override IEnumerable<Toil> MakeNewToils()
+    protected override IEnumerable<Toil> MakeNewToils()
     {
         var f = this;
         Thing gear = f.Gear;
@@ -27,7 +27,7 @@ public class JobDriver_EjectAmmo : JobDriver
         f.FailOnIncapable(PawnCapacityDefOf.Manipulation);
         var getNextIngredient = Toils_General.Label();
         yield return getNextIngredient;
-        foreach (var item in f.EjectAsMuchAsPossible(comp))
+        foreach (var item in f.ejectAsMuchAsPossible(comp))
         {
             yield return item;
         }
@@ -38,7 +38,7 @@ public class JobDriver_EjectAmmo : JobDriver
         yield return Toils_Haul.StartCarryThing(TargetIndex.A, false, true)
             .FailOnDestroyedNullOrForbidden(TargetIndex.A);
         yield return Toils_Jump.JumpIf(getNextIngredient, () => !job.GetTargetQueue(TargetIndex.A).NullOrEmpty());
-        foreach (var item2 in f.EjectAsMuchAsPossible(comp))
+        foreach (var item2 in f.ejectAsMuchAsPossible(comp))
         {
             yield return item2;
         }
@@ -50,14 +50,14 @@ public class JobDriver_EjectAmmo : JobDriver
                 var carriedThing = pawn.carryTracker.CarriedThing;
                 if (carriedThing is { Destroyed: false })
                 {
-                    pawn.carryTracker.TryDropCarriedThing(pawn.Position, ThingPlaceMode.Near, out var _);
+                    pawn.carryTracker.TryDropCarriedThing(pawn.Position, ThingPlaceMode.Near, out _);
                 }
             },
             defaultCompleteMode = ToilCompleteMode.Instant
         };
     }
 
-    private IEnumerable<Toil> EjectAsMuchAsPossible(CompApparelReloadable comp)
+    private IEnumerable<Toil> ejectAsMuchAsPossible(CompApparelReloadable comp)
     {
         var done = Toils_General.Label();
         yield return Toils_Jump.JumpIf(done,

@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.0 - Mod updated for 1.6 and passed autotests
+
+
 1.5.4 - Fixed an issue reported on the old mod-repo
 
 

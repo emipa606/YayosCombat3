@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: industrial ammo -->
+  <yy_ammo_industrial.label>industrial ammo</yy_ammo_industrial.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. -->
+  <yy_ammo_industrial.description>Ammunition used for long-range weapons in the industrial tech.</yy_ammo_industrial.description>
+  <!-- EN: industrial special ammo -->
+  <yy_ammo_industrial_emp.label>industrial special ammo</yy_ammo_industrial_emp.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for special weapons. -->
+  <yy_ammo_industrial_emp.description>Ammunition used for long-range weapons in the industrial tech. Used for special weapons.</yy_ammo_industrial_emp.description>
+  <!-- EN: industrial explosive ammo -->
+  <yy_ammo_industrial_fire.label>industrial explosive ammo</yy_ammo_industrial_fire.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <yy_ammo_industrial_fire.description>Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons.</yy_ammo_industrial_fire.description>
+  <!-- EN: unfinished ammo -->
+  <yy_ammo_industrial_unfinish.label>unfinished ammo</yy_ammo_industrial_unfinish.label>
+  <!-- EN: An unfinished ammo. -->
+  <yy_ammo_industrial_unfinish.description>An unfinished ammo.</yy_ammo_industrial_unfinish.description>
+  <!-- EN: primitive ammo -->
+  <yy_ammo_primitive.label>primitive ammo</yy_ammo_primitive.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. -->
+  <yy_ammo_primitive.description>Ammunition used in primitive and medieval ranged weapons.</yy_ammo_primitive.description>
+  <!-- EN: primitive special ammo -->
+  <yy_ammo_primitive_emp.label>primitive special ammo</yy_ammo_primitive_emp.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for special weapons. -->
+  <yy_ammo_primitive_emp.description>Ammunition used in primitive and medieval ranged weapons. Used for special weapons.</yy_ammo_primitive_emp.description>
+  <!-- EN: primitive explosive ammo -->
+  <yy_ammo_primitive_fire.label>primitive explosive ammo</yy_ammo_primitive_fire.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons. -->
+  <yy_ammo_primitive_fire.description>Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons.</yy_ammo_primitive_fire.description>
+  <!-- EN: unfinished ammo -->
+  <yy_ammo_primitive_unfinish.label>unfinished ammo</yy_ammo_primitive_unfinish.label>
+  <!-- EN: An unfinished ammo. -->
+  <yy_ammo_primitive_unfinish.description>An unfinished ammo.</yy_ammo_primitive_unfinish.description>
+  <!-- EN: spacer ammo -->
+  <yy_ammo_spacer.label>spacer ammo</yy_ammo_spacer.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. -->
+  <yy_ammo_spacer.description>Ammunition used for long-range weapons in the spacer tech.</yy_ammo_spacer.description>
+  <!-- EN: spacer special ammo -->
+  <yy_ammo_spacer_emp.label>spacer special ammo</yy_ammo_spacer_emp.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for special weapons. -->
+  <yy_ammo_spacer_emp.description>Ammunition used for long-range weapons in the spacer tech. Used for special weapons.</yy_ammo_spacer_emp.description>
+  <!-- EN: spacer explosive ammo -->
+  <yy_ammo_spacer_fire.label>spacer explosive ammo</yy_ammo_spacer_fire.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <yy_ammo_spacer_fire.description>Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons.</yy_ammo_spacer_fire.description>
+</LanguageData>

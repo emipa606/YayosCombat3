@@ -5,7 +5,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(DrugPolicy), nameof(DrugPolicy.InitializeIfNeeded))]
+[HarmonyPatch(typeof(DrugPolicy), "InitializeIfNeeded")]
 internal class DrugPolicy_InitializeIfNeeded
 {
     private static readonly AccessTools.FieldRef<DrugPolicy, List<DrugPolicyEntry>> s_entriesInt =

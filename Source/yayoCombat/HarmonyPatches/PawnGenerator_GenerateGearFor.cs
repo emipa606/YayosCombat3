@@ -6,7 +6,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GenerateGearFor))]
+[HarmonyPatch(typeof(PawnGenerator), "GenerateGearFor")]
 internal class PawnGenerator_GenerateGearFor
 {
     [HarmonyPriority(Priority.Last)]

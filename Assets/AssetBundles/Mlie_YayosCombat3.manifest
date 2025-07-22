@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 2122353100
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 908f517f87f28e4714cf0e5e7501e850
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2612ac43db082a73502ee80f2eceb73f
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 908f517f87f28e4714cf0e5e7501e850
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_primitive.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_primitive_fire.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_spacer_emp.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_spacer.png
+- Assets/Data/Mlie.YayosCombat3/Textures/AntiArmor_Rocket.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_industrial_fire.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_spacer_fire.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_industrial_emp.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_primitive_emp.png
+- Assets/Data/Mlie.YayosCombat3/Textures/yy_ammo_industrial.png
+- Assets/Data/Mlie.YayosCombat3/Textures/UpdateInfo/YayosCombat3.png
+Dependencies: []

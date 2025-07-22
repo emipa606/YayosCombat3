@@ -5,7 +5,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(Verb_LaunchProjectile), nameof(Verb_LaunchProjectile.TryCastShot))]
+[HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
 public class Verb_LaunchProjectile_TryCastShot
 {
     public static bool Prefix(ref bool __result, Verb_LaunchProjectile __instance, LocalTargetInfo ___currentTarget,
@@ -69,18 +69,18 @@ public class Verb_LaunchProjectile_TryCastShot
                 if (num2 > 0)
                 {
                     var intVec = localTargetInfo.Cell + GenRadial.RadialPattern[num2];
-                    var projectileHitFlags = ProjectileHitFlags.NonTargetWorld;
+                    var projectileHitTypes = ProjectileHitFlags.NonTargetWorld;
                     if (Rand.Chance(yayoCombat.s_missBulletHit))
                     {
-                        projectileHitFlags = ProjectileHitFlags.All;
+                        projectileHitTypes = ProjectileHitFlags.All;
                     }
 
                     if (!___canHitNonTargetPawnsNow)
                     {
-                        projectileHitFlags &= ~ProjectileHitFlags.NonTargetPawns;
+                        projectileHitTypes &= ~ProjectileHitFlags.NonTargetPawns;
                     }
 
-                    projectile2.Launch(launcher, drawPos, intVec, localTargetInfo, projectileHitFlags,
+                    projectile2.Launch(launcher, drawPos, intVec, localTargetInfo, projectileHitTypes,
                         ___preventFriendlyFire, equipment);
                     __result = true;
                     return false;
@@ -144,10 +144,10 @@ public class Verb_LaunchProjectile_TryCastShot
         }
 
         missRadius = (missRadius * 0.95f) + 0.05f;
-        Mathf.Clamp(missRadius, 0.05f, 0.95f);
+        missRadius = Mathf.Clamp(missRadius, 0.05f, 0.95f);
         if (Rand.Chance(missRadius))
         {
-            resultingLine.ChangeDestToMissWild_NewTemp(shotReport.AimOnTargetChance_StandardTarget, false,
+            resultingLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget, false,
                 __instance.caster != null ? __instance.caster.Map : localTargetInfo.Thing.Map);
             var targetPawns = ProjectileHitFlags.NonTargetWorld;
             if (Rand.Chance(yayoCombat.s_missBulletHit) && ___canHitNonTargetPawnsNow)

@@ -82,21 +82,7 @@ internal class reloadUtility
         }
     }
 
-    public static Thing getEjectableWeapon(IntVec3 c, Map m)
-    {
-        foreach (var thing in c.GetThingList(m))
-        {
-            var CompApparelReloadable = thing.TryGetComp<CompApparelReloadable>();
-            if (CompApparelReloadable is { RemainingCharges: > 0 })
-            {
-                return thing;
-            }
-        }
-
-        return null;
-    }
-
-    public static void tryAutoReload(CompApparelReloadable cp)
+    public static void TryAutoReload(CompApparelReloadable cp)
     {
         if (cp == null || cp.RemainingCharges > 0 || cp.AmmoDef == null)
         {

@@ -5,7 +5,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(Dialog_ManageDrugPolicies), nameof(Dialog_ManageDrugPolicies.DoEntryRow))]
+[HarmonyPatch(typeof(Dialog_ManageDrugPolicies), "DoEntryRow")]
 internal class Dialog_ManageDrugPolicies_DoEntryRow
 {
     private static bool Prefix(Rect rect, DrugPolicyEntry entry)
@@ -15,7 +15,7 @@ internal class Dialog_ManageDrugPolicies_DoEntryRow
             return true;
         }
 
-        CalculateColumnsWidths(rect, out var addictionWidth, out var allowJoyWidth, out var scheduledWidth,
+        calculateColumnsWidths(rect, out var addictionWidth, out var allowJoyWidth, out var scheduledWidth,
             out var drugNameWidth, out var frequencyWidth, out var moodThresholdWidth, out var joyThresholdWidth,
             out var takeToInventoryWidth);
         Text.Anchor = TextAnchor.MiddleLeft;
@@ -84,7 +84,7 @@ internal class Dialog_ManageDrugPolicies_DoEntryRow
         return false;
     }
 
-    private static void CalculateColumnsWidths(Rect rect, out float addictionWidth, out float allowJoyWidth,
+    private static void calculateColumnsWidths(Rect rect, out float addictionWidth, out float allowJoyWidth,
         out float scheduledWidth, out float drugNameWidth, out float frequencyWidth, out float moodThresholdWidth,
         out float joyThresholdWidth, out float takeToInventoryWidth)
     {

@@ -7,8 +7,8 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(Verse.DamageWorker_AddInjury), nameof(Verse.DamageWorker_AddInjury.ApplyDamageToPart),
-    typeof(DamageInfo), typeof(Pawn), typeof(DamageWorker.DamageResult))]
+[HarmonyPatch(typeof(Verse.DamageWorker_AddInjury), "ApplyDamageToPart", typeof(DamageInfo), typeof(Pawn),
+    typeof(DamageWorker.DamageResult))]
 internal class DamageWorker_AddInjury
 {
     private static bool Prefix(Verse.DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn,
@@ -19,7 +19,7 @@ internal class DamageWorker_AddInjury
             return true;
         }
 
-        var exactPartFromDamageInfo = GetExactPartFromDamageInfo(dinfo, pawn);
+        var exactPartFromDamageInfo = getExactPartFromDamageInfo(dinfo, pawn);
         if (exactPartFromDamageInfo == null)
         {
             return false;
@@ -59,7 +59,7 @@ internal class DamageWorker_AddInjury
             return false;
         }
 
-        if (IsHeadshot(dinfo))
+        if (isHeadshot(dinfo))
         {
             result.headshot = true;
         }
@@ -75,7 +75,7 @@ internal class DamageWorker_AddInjury
 
         if (!dinfo.AllowDamagePropagation)
         {
-            FinalizeAndAddInjury(pawn, num, dinfo, result);
+            finalizeAndAddInjury(pawn, num, dinfo, result);
             return false;
         }
 
@@ -86,14 +86,16 @@ internal class DamageWorker_AddInjury
         return false;
     }
 
-    private static BodyPartRecord GetExactPartFromDamageInfo(DamageInfo dinfo, Pawn pawn)
+    private static BodyPartRecord getExactPartFromDamageInfo(DamageInfo damageInfo, Pawn pawn)
     {
-        if (dinfo.HitPart != null)
+        if (damageInfo.HitPart != null)
         {
-            return pawn.health.hediffSet.GetNotMissingParts().All(x => x != dinfo.HitPart) ? null : dinfo.HitPart;
+            return pawn.health.hediffSet.GetNotMissingParts().All(x => x != damageInfo.HitPart)
+                ? null
+                : damageInfo.HitPart;
         }
 
-        var bodyPartRecord = ChooseHitPart(dinfo, pawn);
+        var bodyPartRecord = chooseHitPart(damageInfo, pawn);
         if (bodyPartRecord == null)
         {
             Log.Warning("ChooseHitPart returned null (any part).");
@@ -102,35 +104,35 @@ internal class DamageWorker_AddInjury
         return bodyPartRecord;
     }
 
-    private static BodyPartRecord ChooseHitPart(DamageInfo dinfo, Pawn pawn)
+    private static BodyPartRecord chooseHitPart(DamageInfo damageInfo, Pawn pawn)
     {
-        return pawn.health.hediffSet.GetRandomNotMissingPart(dinfo.Def, dinfo.Height, dinfo.Depth);
+        return pawn.health.hediffSet.GetRandomNotMissingPart(damageInfo.Def, damageInfo.Height, damageInfo.Depth);
     }
 
-    private static bool IsHeadshot(DamageInfo dinfo)
+    private static bool isHeadshot(DamageInfo damageInfo)
     {
-        return !dinfo.InstantPermanentInjury && dinfo.HitPart.groups.Contains(BodyPartGroupDefOf.FullHead) &&
-               dinfo.Def == DamageDefOf.Bullet;
+        return !damageInfo.InstantPermanentInjury && damageInfo.HitPart.groups.Contains(BodyPartGroupDefOf.FullHead) &&
+               damageInfo.Def == DamageDefOf.Bullet;
     }
 
-    private static void FinalizeAndAddInjury(Pawn pawn, float totalDamage, DamageInfo dinfo,
+    private static void finalizeAndAddInjury(Pawn pawn, float totalDamage, DamageInfo damageInfo,
         DamageWorker.DamageResult result)
     {
-        if (pawn.health.hediffSet.PartIsMissing(dinfo.HitPart))
+        if (pawn.health.hediffSet.PartIsMissing(damageInfo.HitPart))
         {
             return;
         }
 
-        var hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(dinfo.Def, pawn, dinfo.HitPart);
-        var hediff_Injury = (Hediff_Injury)HediffMaker.MakeHediff(hediffDefFromDamage, pawn);
-        hediff_Injury.Part = dinfo.HitPart;
-        hediff_Injury.sourceDef = dinfo.Weapon;
-        hediff_Injury.sourceBodyPartGroup = dinfo.WeaponBodyPartGroup;
-        hediff_Injury.sourceHediffDef = dinfo.WeaponLinkedHediff;
-        hediff_Injury.Severity = totalDamage;
-        if (dinfo.InstantPermanentInjury)
+        var hediffDefFromDamage = HealthUtility.GetHediffDefFromDamage(damageInfo.Def, pawn, damageInfo.HitPart);
+        var hediffInjury = (Hediff_Injury)HediffMaker.MakeHediff(hediffDefFromDamage, pawn);
+        hediffInjury.Part = damageInfo.HitPart;
+        hediffInjury.sourceDef = damageInfo.Weapon;
+        hediffInjury.sourceBodyPartGroup = damageInfo.WeaponBodyPartGroup;
+        hediffInjury.sourceHediffDef = damageInfo.WeaponLinkedHediff;
+        hediffInjury.Severity = totalDamage;
+        if (damageInfo.InstantPermanentInjury)
         {
-            var hediffComp_GetsPermanent = hediff_Injury.TryGetComp<HediffComp_GetsPermanent>();
+            var hediffComp_GetsPermanent = hediffInjury.TryGetComp<HediffComp_GetsPermanent>();
             if (hediffComp_GetsPermanent != null)
             {
                 hediffComp_GetsPermanent.IsPermanent = true;
@@ -142,15 +144,15 @@ internal class DamageWorker_AddInjury
             }
         }
 
-        FinalizeAndAddInjury(pawn, hediff_Injury, dinfo, result);
+        finalizeAndAddInjury(pawn, hediffInjury, damageInfo, result);
     }
 
-    private static void FinalizeAndAddInjury(Pawn pawn, Hediff_Injury injury, DamageInfo dinfo,
+    private static void finalizeAndAddInjury(Pawn pawn, Hediff_Injury injury, DamageInfo damageInfo,
         DamageWorker.DamageResult result)
     {
         injury.TryGetComp<HediffComp_GetsPermanent>()?.PreFinalizeInjury();
         var partHealth = pawn.health.hediffSet.GetPartHealth(injury.Part);
-        if (pawn.IsColonist && !dinfo.IgnoreInstantKillProtection && dinfo.Def.ExternalViolenceFor(pawn) &&
+        if (pawn.IsColonist && !damageInfo.IgnoreInstantKillProtection && damageInfo.Def.ExternalViolenceFor(pawn) &&
             !Rand.Chance(Find.Storyteller.difficulty.allowInstantKillChance))
         {
             var num = injury.def.lethalSeverity > 0f ? injury.def.lethalSeverity * 1.1f : 1f;
@@ -176,7 +178,7 @@ internal class DamageWorker_AddInjury
             }
         }
 
-        pawn.health.AddHediff(injury, null, dinfo, result);
+        pawn.health.AddHediff(injury, null, damageInfo, result);
         var num3 = Mathf.Min(injury.Severity, partHealth);
         result.totalDamageDealt += num3;
         result.wounded = true;

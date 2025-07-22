@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -34,12 +35,13 @@ internal class ThingSetMaker_TraderStock_Generate
         yield return new CodeInstruction(OpCodes.Ldarg_2);
         yield return new CodeInstruction(OpCodes.Call,
             typeof(ThingSetMaker_TraderStock_Generate).GetMethod(
-                nameof(AddAmmo),
+                nameof(addAmmo),
                 BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic));
         yield return returnInstruction;
     }
 
-    private static void AddAmmo(TraderKindDef traderKindDef, Faction makingFaction, int forTile, List<Thing> outThings)
+    private static void addAmmo(TraderKindDef traderKindDef, Faction makingFaction, PlanetTile forTile,
+        List<Thing> outThings)
     {
         if (!yayoCombat.ammo)
         {
@@ -97,9 +99,9 @@ internal class ThingSetMaker_TraderStock_Generate
             return;
         }
 
-        var amount = 400f;
-        var min = 0.25f;
-        var max = 1.50f;
+        const float amount = 400f;
+        const float min = 0.25f;
+        const float max = 1.50f;
 
         Thing thing;
 

@@ -5,8 +5,8 @@ using Verse.AI;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(JobGiver_MoveDrugsToInventory), nameof(JobGiver_MoveDrugsToInventory.FindDrugFor_NewTemp))]
-internal class JobGiver_MoveDrugsToInventory_FindDrugFor_NewTemp
+[HarmonyPatch(typeof(JobGiver_MoveDrugsToInventory), "FindDrugFor")]
+internal class JobGiver_MoveDrugsToInventory_FindDrugFor
 {
     private static bool Prefix(ref Thing __result, Pawn pawn,
         ThingDef drugDef)

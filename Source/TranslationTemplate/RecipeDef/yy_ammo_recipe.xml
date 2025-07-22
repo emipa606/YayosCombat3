@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- EN: make industrial ammo -->
+  <Make_yy_ammo_industrial.label>make industrial ammo</Make_yy_ammo_industrial.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. -->
+  <Make_yy_ammo_industrial.description>Ammunition used for long-range weapons in the industrial tech.</Make_yy_ammo_industrial.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial.jobString>Making ammo.</Make_yy_ammo_industrial.jobString>
+  <!-- EN: make industrial special ammo -->
+  <Make_yy_ammo_industrial_emp.label>make industrial special ammo</Make_yy_ammo_industrial_emp.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for special weapons. -->
+  <Make_yy_ammo_industrial_emp.description>Ammunition used for long-range weapons in the industrial tech. Used for special weapons.</Make_yy_ammo_industrial_emp.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial_emp.jobString>Making ammo.</Make_yy_ammo_industrial_emp.jobString>
+  <!-- EN: make industrial special ammo 10 -->
+  <Make_yy_ammo_industrial_emp10.label>make industrial special ammo 10</Make_yy_ammo_industrial_emp10.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for special weapons. -->
+  <Make_yy_ammo_industrial_emp10.description>Ammunition used for long-range weapons in the industrial tech. Used for special weapons.</Make_yy_ammo_industrial_emp10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial_emp10.jobString>Making ammo.</Make_yy_ammo_industrial_emp10.jobString>
+  <!-- EN: make industrial explosive ammo -->
+  <Make_yy_ammo_industrial_fire.label>make industrial explosive ammo</Make_yy_ammo_industrial_fire.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_industrial_fire.description>Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_industrial_fire.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial_fire.jobString>Making ammo.</Make_yy_ammo_industrial_fire.jobString>
+  <!-- EN: make industrial explosive ammo 10 -->
+  <Make_yy_ammo_industrial_fire10.label>make industrial explosive ammo 10</Make_yy_ammo_industrial_fire10.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_industrial_fire10.description>Ammunition used for long-range weapons in the industrial tech. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_industrial_fire10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial_fire10.jobString>Making ammo.</Make_yy_ammo_industrial_fire10.jobString>
+  <!-- EN: make industrial ammo 10 -->
+  <Make_yy_ammo_industrial10.label>make industrial ammo 10</Make_yy_ammo_industrial10.label>
+  <!-- EN: Ammunition used for long-range weapons in the industrial tech. -->
+  <Make_yy_ammo_industrial10.description>Ammunition used for long-range weapons in the industrial tech.</Make_yy_ammo_industrial10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_industrial10.jobString>Making ammo.</Make_yy_ammo_industrial10.jobString>
+  <!-- EN: make primitive ammo -->
+  <Make_yy_ammo_primitive.label>make primitive ammo</Make_yy_ammo_primitive.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. -->
+  <Make_yy_ammo_primitive.description>Ammunition used in primitive and medieval ranged weapons.</Make_yy_ammo_primitive.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive.jobString>Making ammo.</Make_yy_ammo_primitive.jobString>
+  <!-- EN: make primitive special ammo -->
+  <Make_yy_ammo_primitive_emp.label>make primitive special ammo</Make_yy_ammo_primitive_emp.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for special weapons. -->
+  <Make_yy_ammo_primitive_emp.description>Ammunition used in primitive and medieval ranged weapons. Used for special weapons.</Make_yy_ammo_primitive_emp.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive_emp.jobString>Making ammo.</Make_yy_ammo_primitive_emp.jobString>
+  <!-- EN: make primitive special ammo 10 -->
+  <Make_yy_ammo_primitive_emp10.label>make primitive special ammo 10</Make_yy_ammo_primitive_emp10.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for special weapons. -->
+  <Make_yy_ammo_primitive_emp10.description>Ammunition used in primitive and medieval ranged weapons. Used for special weapons.</Make_yy_ammo_primitive_emp10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive_emp10.jobString>Making ammo.</Make_yy_ammo_primitive_emp10.jobString>
+  <!-- EN: make primitive explosive ammo -->
+  <Make_yy_ammo_primitive_fire.label>make primitive explosive ammo</Make_yy_ammo_primitive_fire.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_primitive_fire.description>Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_primitive_fire.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive_fire.jobString>Making ammo.</Make_yy_ammo_primitive_fire.jobString>
+  <!-- EN: make primitive explosive ammo 10 -->
+  <Make_yy_ammo_primitive_fire10.label>make primitive explosive ammo 10</Make_yy_ammo_primitive_fire10.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_primitive_fire10.description>Ammunition used in primitive and medieval ranged weapons. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_primitive_fire10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive_fire10.jobString>Making ammo.</Make_yy_ammo_primitive_fire10.jobString>
+  <!-- EN: make primitive ammo 10 -->
+  <Make_yy_ammo_primitive10.label>make primitive ammo 10</Make_yy_ammo_primitive10.label>
+  <!-- EN: Ammunition used in primitive and medieval ranged weapons. -->
+  <Make_yy_ammo_primitive10.description>Ammunition used in primitive and medieval ranged weapons.</Make_yy_ammo_primitive10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_primitive10.jobString>Making ammo.</Make_yy_ammo_primitive10.jobString>
+  <!-- EN: make spacer ammo -->
+  <Make_yy_ammo_spacer.label>make spacer ammo</Make_yy_ammo_spacer.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. -->
+  <Make_yy_ammo_spacer.description>Ammunition used for long-range weapons in the spacer tech.</Make_yy_ammo_spacer.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer.jobString>Making ammo.</Make_yy_ammo_spacer.jobString>
+  <!-- EN: make spacer special ammo -->
+  <Make_yy_ammo_spacer_emp.label>make spacer special ammo</Make_yy_ammo_spacer_emp.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for special weapons. -->
+  <Make_yy_ammo_spacer_emp.description>Ammunition used for long-range weapons in the spacer tech. Used for special weapons.</Make_yy_ammo_spacer_emp.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer_emp.jobString>Making ammo.</Make_yy_ammo_spacer_emp.jobString>
+  <!-- EN: make spacer special ammo 10 -->
+  <Make_yy_ammo_spacer_emp10.label>make spacer special ammo 10</Make_yy_ammo_spacer_emp10.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for special weapons. -->
+  <Make_yy_ammo_spacer_emp10.description>Ammunition used for long-range weapons in the spacer tech. Used for special weapons.</Make_yy_ammo_spacer_emp10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer_emp10.jobString>Making ammo.</Make_yy_ammo_spacer_emp10.jobString>
+  <!-- EN: make spacer explosive ammo -->
+  <Make_yy_ammo_spacer_fire.label>make spacer explosive ammo</Make_yy_ammo_spacer_fire.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_spacer_fire.description>Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_spacer_fire.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer_fire.jobString>Making ammo.</Make_yy_ammo_spacer_fire.jobString>
+  <!-- EN: make spacer explosive ammo 10 -->
+  <Make_yy_ammo_spacer_fire10.label>make spacer explosive ammo 10</Make_yy_ammo_spacer_fire10.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons. -->
+  <Make_yy_ammo_spacer_fire10.description>Ammunition used for long-range weapons in the spacer tech. Used for explosion, flame, and smoke damage type weapons.</Make_yy_ammo_spacer_fire10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer_fire10.jobString>Making ammo.</Make_yy_ammo_spacer_fire10.jobString>
+  <!-- EN: make spacer ammo 10 -->
+  <Make_yy_ammo_spacer10.label>make spacer ammo 10</Make_yy_ammo_spacer10.label>
+  <!-- EN: Ammunition used for long-range weapons in the spacer tech. -->
+  <Make_yy_ammo_spacer10.description>Ammunition used for long-range weapons in the spacer tech.</Make_yy_ammo_spacer10.description>
+  <!-- EN: Making ammo. -->
+  <Make_yy_ammo_spacer10.jobString>Making ammo.</Make_yy_ammo_spacer10.jobString>
+</LanguageData>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName = "Pilum_Thrown"]/projectile</xpath>
+    <value>
+      <projectile>
+        <damageDef>RangedStab</damageDef>
+        <damageAmountBase>22</damageAmountBase>
+        <stoppingPower>2.5</stoppingPower>
+        <armorPenetrationBase>0.25</armorPenetrationBase>
+        <speed>26</speed>
+      </projectile>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName = "Bullet_AssaultRifle"]/projectile</xpath>
+    <value>
+      <projectile>
+        <damageDef>Bullet</damageDef>
+        <damageAmountBase>11</damageAmountBase>
+        <speed>70</speed>
+        <armorPenetrationBase>0.19</armorPenetrationBase>
+      </projectile>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>Defs/ThingDef[defName = "Bullet_BoltActionRifle"]/projectile</xpath>
+    <value>
+      <projectile>
+        <damageDef>Bullet</damageDef>
+        <damageAmountBase>18</damageAmountBase>
+        <stoppingPower>1.5</stoppingPower>
+        <speed>70</speed>
+        <armorPenetrationBase>0.17</armorPenetrationBase>
+      </projectile>
+    </value>
+  </Operation>
+</Patch>

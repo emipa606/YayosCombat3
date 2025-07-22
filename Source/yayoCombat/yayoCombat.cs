@@ -22,12 +22,12 @@ public class yayoCombat : ModBase
 
     public static readonly bool using_AlienRaces;
 
-    public static readonly bool using_Oversized;
+    private static readonly bool using_Oversized;
 
-    public static readonly Dictionary<ThingDef, Vector3> southOffsets = new Dictionary<ThingDef, Vector3>();
-    public static readonly Dictionary<ThingDef, Vector3> northOffsets = new Dictionary<ThingDef, Vector3>();
-    public static readonly Dictionary<ThingDef, Vector3> eastOffsets = new Dictionary<ThingDef, Vector3>();
-    public static readonly Dictionary<ThingDef, Vector3> westOffsets = new Dictionary<ThingDef, Vector3>();
+    private static readonly Dictionary<ThingDef, Vector3> southOffsets = new();
+    private static readonly Dictionary<ThingDef, Vector3> northOffsets = new();
+    private static readonly Dictionary<ThingDef, Vector3> eastOffsets = new();
+    private static readonly Dictionary<ThingDef, Vector3> westOffsets = new();
 
     public static Dictionary<Thing, Tuple<Vector3, float>> weaponLocations;
 
@@ -37,9 +37,9 @@ public class yayoCombat : ModBase
 
     public static float ammoGen;
 
-    public static float maxAmmo;
+    private static float maxAmmo;
 
-    public static int enemyAmmo;
+    private static int enemyAmmo;
 
     public static float s_enemyAmmo;
 
@@ -49,11 +49,11 @@ public class yayoCombat : ModBase
 
     public static float meleeRandom;
 
-    public static bool handProtect;
+    private static bool handProtect;
 
     public static bool advArmor;
 
-    public static int armorEf;
+    private static int armorEf;
 
     public static float s_armorEf;
 
@@ -61,11 +61,11 @@ public class yayoCombat : ModBase
 
     public static bool advShootAcc;
 
-    public static int accEf;
+    private static int accEf;
 
     public static float s_accEf;
 
-    public static int missBulletHit;
+    private static int missBulletHit;
 
     public static float s_missBulletHit;
 
@@ -81,7 +81,7 @@ public class yayoCombat : ModBase
 
     public static float maxBulletSpeed;
 
-    public static bool enemyRocket;
+    private static bool enemyRocket;
 
     public static readonly List<ThingDef> ar_customAmmoDef;
 
@@ -383,7 +383,7 @@ public class yayoCombat : ModBase
     {
     }
 
-    public static void patchDef2()
+    private static void patchDef2()
     {
         if (handProtect)
         {
@@ -641,17 +641,17 @@ public class yayoCombat : ModBase
 
                 if (compProperties_Reloadable.ammoDef == null)
                 {
-                    if ((int)item3.techLevel >= 5)
+                    switch ((int)item3.techLevel)
                     {
-                        compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_spacer");
-                    }
-                    else if ((int)item3.techLevel >= 4)
-                    {
-                        compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_industrial");
-                    }
-                    else
-                    {
-                        compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_primitive");
+                        case >= 5:
+                            compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_spacer");
+                            break;
+                        case >= 4:
+                            compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_industrial");
+                            break;
+                        default:
+                            compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_primitive");
+                            break;
                     }
                 }
 
@@ -683,7 +683,7 @@ public class yayoCombat : ModBase
         if (advArmor)
         {
             foreach (var item7 in DefDatabase<PawnKindDef>.AllDefs.Where(pawn =>
-                         pawn.defaultFactionType == FactionDefOf.Mechanoid))
+                         pawn.defaultFactionDef == FactionDefOf.Mechanoid))
             {
                 item7.race.SetStatBaseValue(StatDefOf.ArmorRating_Sharp,
                     item7.race.GetStatValueAbstract(StatDefOf.ArmorRating_Sharp) * 1.3f);
@@ -698,7 +698,7 @@ public class yayoCombat : ModBase
         }
     }
 
-    public static bool containCheckByList(string origin, List<string> ar)
+    private static bool containCheckByList(string origin, List<string> ar)
     {
         foreach (var value in ar)
         {
@@ -711,7 +711,7 @@ public class yayoCombat : ModBase
         return false;
     }
 
-    public static string getContainStringByList(string keyword, List<string> ar)
+    private static string getContainStringByList(string keyword, List<string> ar)
     {
         foreach (var containStringByList in ar)
         {

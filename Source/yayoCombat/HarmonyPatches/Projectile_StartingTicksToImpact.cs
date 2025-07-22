@@ -4,7 +4,7 @@ using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(Projectile), nameof(Projectile.StartingTicksToImpact), MethodType.Getter)]
+[HarmonyPatch(typeof(Projectile), "StartingTicksToImpact", MethodType.Getter)]
 internal static class Projectile_StartingTicksToImpact
 {
     public static bool Prefix(Projectile __instance, Vector3 ___origin, Vector3 ___destination, ref float __result)

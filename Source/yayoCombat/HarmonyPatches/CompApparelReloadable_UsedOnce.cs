@@ -23,6 +23,6 @@ internal class CompApparelReloadable_UsedOnce
         }
 
         // 알아서 장전 ai
-        reloadUtility.tryAutoReload(__instance);
+        reloadUtility.TryAutoReload(__instance);
     }
 }
