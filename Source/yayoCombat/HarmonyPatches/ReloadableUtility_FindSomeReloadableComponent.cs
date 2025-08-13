@@ -15,6 +15,11 @@ internal class ReloadableUtility_FindSomeReloadableComponent
             return;
         }
 
+        if (pawn?.equipment == null)
+        {
+            return;
+        }
+
         foreach (var thing in pawn.equipment.AllEquipmentListForReading)
         {
             var compApparelReloadable = thing.TryGetComp<CompApparelReloadable>();

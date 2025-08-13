@@ -1,34 +1,85 @@
-# Copilot Instruction File for RimWorld Mod "Yayo's Combat Extensions"
+# Copilot Instructions for Yayo's Combat 3 (Continued) Mod
 
 ## Mod Overview and Purpose
-"Yayo's Combat Extensions" is a RimWorld mod designed to enhance and expand the combat mechanics within the game. The mod focuses on introducing new functionalities for combat apparel, weapon systems, drug policies, and gear management to provide players with more strategic options and challenges. The primary aim is to enrich the in-game combat experience while maintaining balance and compatibility with the core mechanics of RimWorld.
+
+Yayo's Combat 3 (Continued) is a comprehensive overhaul of RimWorld's combat system. It introduces a sophisticated armor and ammunition system that emphasizes penetration, making high-tech armor resistant to low-tech weapons. The mod enriches the vanilla gameplay by adding realism and tactical elements to combat. It is especially beneficial for players looking to expand their RimWorld experience with enhanced tactical depth.
 
 ## Key Features and Systems
-- **Turret and Weapon Enhancements:** The mod modifies turret functionalities and introduces new weapon systems.
-- **Reloadable Apparel:** Adds a system for apparel that can be reloaded, giving more depth to gear usage.
-- **Drug Policies:** Expands the drug policy management system to give players more control over how drugs are handled.
-- **Gear and Equipment Management:** Includes mechanisms for managing gear, including reloading, generating gear for pawns, and tracking equipment conditions.
-- **Market and Trade Adjustments:** Alters trade and market interactions to account for the new combat features and related items.
+
+1. **Armor System**: 
+   - Armor and weapon penetration are key components.
+   - High-tech armors are resistant to low-tech weaponry.
+   - New algorithms calculate projectile deflection based on tech levels and durability.
+
+2. **Ammunition and Loadout**: 
+   - All ranged weapons require ammunition based on weapon type and tech level.
+   - Includes realistic supply logistics where pawns switch to melee when out of ammo.
+   - Loadouts for ammo and medication can be set in drug policy.
+
+3. **Accuracy and Projectiles**: 
+   - Improved accuracy algorithm that factors in shooting skills.
+   - Projectiles have increased speed for more dynamic combat engagement.
+
+4. **Flexibility and Options**: 
+   - Highly customizable with various options to enable or disable features.
+   - Compatibility with mods that add weapons and armors.
+
+5. **Compatibility**: 
+   - Automatically applies features to most modded weapons and armor.
+   - Settings ensure stability when using multiple mods.
 
 ## Coding Patterns and Conventions
-- **Internal Classes:** Most of the mod's classes are internal, ensuring encapsulation within the mod while adhering to C# best practices for access control.
-- **Class Naming:** Classes are named following CamelCase conventions and are prefixed with the component or system they modify or extend, making the structure intuitive and navigable.
-- **Consistent Method Signatures:** Methods within classes are designed to be consistent with RimWorld's modding structure, providing clear, coherent implementations that follow the codebase's existing patterns.
+
+- **Class Structure**: 
+  - Utilize internal classes to encapsulate functionality local to the mod's features.
+  - Public classes are used where interactions with RimWorld's core systems occur.
+
+- **Method Naming**: 
+  - Use descriptive method names indicating their purpose or operation.
+  
+- **File Organization**: 
+  - Files are organized by functionality, such as `Building_TurretGun_MakeGun.cs` or `Pawn_EquipmentTracker_DropAllEquipment.cs`.
 
 ## XML Integration
-- **Def Management:** Def files are used to integrate the new systems and changes into the game. Ensure all XML def files adhere to RimWorld’s XML schema standards.
-- **Implied Definitions:** Make use of the `DefGenerator_GenerateImpliedDefs_PreResolve` class to generate any necessary implied definitions within the game's framework.
+
+- XML files should define new items, ammo types, and modifications to existing objects.
+- Use XML files to adjust balance and settings without requiring C# code alterations.
 
 ## Harmony Patching
-- Utilize Harmony for patching existing methods. This allows modification of the base game methods without altering the original code, ensuring greater compatibility and reduced conflict potential.
-- Patches should be annotated with proper Harmony annotations and should only modify functionality where necessary.
-- Maintain clear documentation within patch classes to explain the purpose and expected outcome of each patch.
+
+- **Purpose and Usage**:
+  - Harmony is used to alter the core behavior of RimWorld without changing the original source code.
+  - It patches methods to introduce new behaviors or adapt existing ones, e.g., modifying durability checks or accuracy calculations.
+
+- **Patterns**:
+  - Use Harmony to prefix or postfix methods when injecting pre- or post-execution logic.
+  - Patch only the necessary parts of methods to maintain compatibility with other mods.
 
 ## Suggestions for Copilot
-- When generating C# code, follow the established class and method naming conventions to ensure consistency.
-- Recommend XML snippets for def files where new items, gear, or drug policies might be added.
-- Suggest Harmony prefixes, postfixes, or transpilers as needed to modify existing game behavior.
-- Provide suggestions for improving encapsulation and modular coding practices, which can increase maintainability and readability of the mod code.
-- Generate extensive comments within the code to articulate complex logic or intricate integration points with the game.
 
-By adhering to these guidelines, Copilot can assist in maintaining a high-quality codebase that integrates seamlessly with RimWorld's framework, enhancing both the mod implementation process and the user experience.
+- **Automated Design Patterns**:
+  - Implement patterns for common combat functionalities, such as checking ammo or adjusting projectile speed.
+
+- **Refactor Suggestions**:
+  - Recommend refactoring large methods into smaller, focused functions to improve readability and maintainability.
+
+- **Template Classes**:
+  - Utilize templates for repetitive structures, such as generating new ammo types or armor definitions.
+
+- **Common Tasks**:
+  - Automate frequent coding tasks such as Harmony patches or XML file generation with standardized code blocks.
+
+- **Error Checking**:
+  - Check for edge cases in ammo system and armor interactions, suggesting fixes where logic may fail, such as handling null ammo arrays.
+
+## Special Thanks
+
+- **Nemomone3003**: For exceptional ammo graphic art.
+- **Densevoid**: For crucial coding assistance.
+
+## Further Development
+
+- While the current development has ceased, the source code is available for enthusiasts who wish to continue the project. Feel free to evolve the mod while adhering to the quality and compatibility standards set by its predecessors.
+
+
+This `.github/copilot-instructions.md` file gives a comprehensive guide on the Yayo's Combat 3 (Continued) mod, providing key insights, coding conventions, and suggestions for using GitHub Copilot effectively, ensuring smooth development and maintenance.

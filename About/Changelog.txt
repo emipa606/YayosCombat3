@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.1 - Fixed compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3513825850]Animal Apparel: Framework[/url]
+
+
 1.6.0 - Mod updated for 1.6 and passed autotests
 
 
