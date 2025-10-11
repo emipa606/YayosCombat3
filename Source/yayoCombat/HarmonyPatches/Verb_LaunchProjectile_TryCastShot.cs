@@ -58,6 +58,26 @@ public class Verb_LaunchProjectile_TryCastShot
 
         var drawPos = __instance.caster.DrawPos;
         var projectile2 = (Projectile)GenSpawn.Spawn(projectile, resultingLine.Source, __instance.caster.Map);
+        if (equipment.TryGetComp(out CompUniqueWeapon comp))
+        {
+            foreach (var item in comp.TraitsListForReading)
+            {
+                if (item.damageDefOverride != null)
+                {
+                    projectile2.damageDefOverride = item.damageDefOverride;
+                }
+
+                if (item.extraDamages.NullOrEmpty())
+                {
+                    continue;
+                }
+
+                projectile2.extraDamages ??= [];
+
+                projectile2.extraDamages.AddRange(item.extraDamages);
+            }
+        }
+
         if (__instance.verbProps.ForcedMissRadius > 0.5f)
         {
             var num = VerbUtility.CalculateAdjustedForcedMiss(__instance.verbProps.ForcedMissRadius,

@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.2 - Fixed Unique weapon damage modifiers
+
+
 1.6.1 - Fixed compatibility with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3513825850]Animal Apparel: Framework[/url]
 
 

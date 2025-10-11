@@ -36,7 +36,7 @@
   <incompatibleWith>
     <li>Solaris.SYS</li>
   </incompatibleWith>
-  <description>[img]https://i.imgur.com/buuPQel.png[/img]
+  <description>[img]https://i.postimg.cc/1X4HT06h/Info.png[/img]
 Update of YAYOs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2038409475
 Based on the abandoned 1.3 update by Ogliss
@@ -51,20 +51,20 @@ The advanced animations have been removed from the mod, if you want these animat
 - A big thanks to Ferris that made most of the work for the 1.5 update, without them this would have taken a lot longer!
 - Also check out the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2796514196]Yayo's Combat 3 - Addon[/url] by Syrus, it contains expanded ammo handling and some compatibility fixes for other mods.
 
-[img]https://i.imgur.com/pufA0kM.png[/img]
+[img]https://i.postimg.cc/8csH3dWV/Notice.png[/img]
 
 [table]
     [tr]
-        [td][url=https://discord.gg/h5TY6DA][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
-        [td][url=https://github.com/emipa606/YayosCombat3][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+        [td][url=https://discord.gg/h5TY6DA][img]https://i.postimg.cc/T1h9SjbF/Discord.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/YayosCombat3][img]https://i.postimg.cc/fykKF7X4/Github.png[/img][/url][/td]
     [/tr]
     [tr]
-        [td][img]https://i.imgur.com/WjDSfUn.png[/img][/td]
-        [td][img]https://i.imgur.com/Be8E2qJ.png[/img][/td]
+        [td][img]https://i.postimg.cc/MHXD40RW/Safe-To-Add.png[/img][/td]
+        [td][img]https://i.postimg.cc/brdTM0bP/Remove-May-Work.png[/img][/td]
     [/tr]
 [/table]
 	
-[img]https://i.imgur.com/Z4GOv8H.png[/img]
+[img]https://i.postimg.cc/hvhrw8xB/Original-Description.png[/img]
 
 [h1][b]* Completely changes the combat system[/b][/h1]
 
@@ -72,22 +72,22 @@ The advanced animations have been removed from the mod, if you want these animat
 Penetration becomes very important.
 High-tech armor is no longer pierced by Low-tech weapon
 
-[list][img]https://i.imgur.com/9P76nG3.gif[/img][/list]
+[list][img]https://i.postimg.cc/43gmJC0V/9P76nG3.gif[/img][/list]
 
 [h1][b]* Ammunition system and Loadout[/b][/h1]
 All ranged weapons are changed to consume ammunition.
 When the enemy runs out of ammo, they will melee combat with a gun.
 
-[list][img]https://imgur.com/SWopiu3.gif[/img][/list]
+[list][img]https://i.postimg.cc/g0Y7hDBk/SWopiu3.gif[/img][/list]
 
 Ammunition is divided according to techlevel and damage type.
 For example, flamethrowers require industrial explosive ammunition.
 
-[list][img]https://imgur.com/LUrOben.png[/img][/list]
+[list][img]https://i.postimg.cc/Pqt7D4VR/LUrOben.png[/img][/list]
 
 You can set the loadout of ammo and medicine in the drug policy.
 
-[list][img]https://imgur.com/TVI7EQR.png[/img][/list]
+[list][img]https://i.postimg.cc/ryBMrBG2/TVI7EQR.png[/img][/list]
 
 [h1][b]* Other features[/b][/h1]
 [list][*]Realistic accuracy algorithm
@@ -99,7 +99,7 @@ You can set the loadout of ammo and medicine in the drug policy.
 
 [h1][b]* Options to control all of this[/b][/h1]
 
-[list][img]https://imgur.com/forUaNt.png[/img][/list]
+[list][img]https://i.postimg.cc/7LxRzVtR/forUaNt.png[/img][/list]
 
 [h1][b]* Detail[/b][/h1]
 [list][*]There is no need to use it with other yayo combat versions. The new version always includes the features of the previous version.
@@ -166,11 +166,11 @@ We will no longer update mods.
 Since the source code is included and uploaded, you can receive the source code by subscribing to the mod.
 Any mods are allowed to be uploaded fresh, and if someone wants to, I'm fine with delegating permission to the mod itself to continue on my behalf. (In this case, I will upload the mod for you, but in the long run, you will have to deal with bugs and rimworld versions)
 
-[img]https://i.imgur.com/PwoNOj4.png[/img]
+[img]https://i.postimg.cc/x8qR7GH9/Reporting-Issues.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
-[*] Post your error-log using the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Log Uploader[/url] or the standalone [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Uploader[/url] and command Ctrl+F12
+[*] Always post your log using the [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404]Log Uploader[/url]
 [*] For best support, please use the Discord-channel for error-reporting.
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
@@ -178,5 +178,5 @@ Any mods are allowed to be uploaded fresh, and if someone wants to, I'm fine wit
 [/list] 
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/2854006492][img]https://img.shields.io/github/v/release/emipa606/YayosCombat3?label=latest%20version&amp;style=plastic&amp;color=9f1111&amp;labelColor=black[/img][/url] | tags:  ammo, combat,  armor</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.1</modVersion>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.2</modVersion>
 </ModMetaData>

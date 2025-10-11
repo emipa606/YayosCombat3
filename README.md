@@ -1,6 +1,6 @@
 # [Yayo's Combat 3 (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2854006492)
 
-![Image](https://i.imgur.com/buuPQel.png)
+![Image](https://i.postimg.cc/1X4HT06h/Info.png)
 
 Update of YAYOs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2038409475
@@ -17,9 +17,9 @@ The advanced animations have been removed from the mod, if you want these animat
 - A big thanks to Ferris that made most of the work for the 1.5 update, without them this would have taken a lot longer!
 - Also check out the [Yayo's Combat 3 - Addon](https://steamcommunity.com/sharedfiles/filedetails/?id=2796514196) by Syrus, it contains expanded ammo handling and some compatibility fixes for other mods.
 
-![Image](https://i.imgur.com/pufA0kM.png)
+![Image](https://i.postimg.cc/8csH3dWV/Notice.png)
 	
-![Image](https://i.imgur.com/Z4GOv8H.png)
+![Image](https://i.postimg.cc/hvhrw8xB/Original-Description.png)
 
 # *** Completely changes the combat system**
 
@@ -30,7 +30,7 @@ Penetration becomes very important.
 High-tech armor is no longer pierced by Low-tech weapon
 
 
-![Image](https://i.imgur.com/9P76nG3.gif)
+![Image](https://i.postimg.cc/43gmJC0V/9P76nG3.gif)
 
 
 # *** Ammunition system and Loadout**
@@ -39,20 +39,20 @@ All ranged weapons are changed to consume ammunition.
 When the enemy runs out of ammo, they will melee combat with a gun.
 
 
-![Image](https://imgur.com/SWopiu3.gif)
+![Image](https://i.postimg.cc/g0Y7hDBk/SWopiu3.gif)
 
 
 Ammunition is divided according to techlevel and damage type.
 For example, flamethrowers require industrial explosive ammunition.
 
 
-![Image](https://imgur.com/LUrOben.png)
+![Image](https://i.postimg.cc/Pqt7D4VR/LUrOben.png)
 
 
 You can set the loadout of ammo and medicine in the drug policy.
 
 
-![Image](https://imgur.com/TVI7EQR.png)
+![Image](https://i.postimg.cc/ryBMrBG2/TVI7EQR.png)
 
 
 # *** Other features**
@@ -70,7 +70,7 @@ You can set the loadout of ammo and medicine in the drug policy.
 
 
 
-![Image](https://imgur.com/forUaNt.png)
+![Image](https://i.postimg.cc/7LxRzVtR/forUaNt.png)
 
 
 # *** Detail**
@@ -155,13 +155,13 @@ We will no longer update mods.
 Since the source code is included and uploaded, you can receive the source code by subscribing to the mod.
 Any mods are allowed to be uploaded fresh, and if someone wants to, I'm fine with delegating permission to the mod itself to continue on my behalf. (In this case, I will upload the mod for you, but in the long run, you will have to deal with bugs and rimworld versions)
 
-![Image](https://i.imgur.com/PwoNOj4.png)
+![Image](https://i.postimg.cc/x8qR7GH9/Reporting-Issues.png)
 
 
 
 -  See if the the error persists if you just have this mod and its requirements active.
 -  If not, try adding your other mods until it happens again.
--  Post your error-log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) or the standalone [Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404) and command Ctrl+F12
+-  Always post your log using the [Log Uploader](https://steamcommunity.com/sharedfiles/filedetails/?id=2873415404)
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
