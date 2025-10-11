@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.3 - Fixed ammo spawning on death
+
+
 1.6.2 - Fixed Unique weapon damage modifiers
 
 

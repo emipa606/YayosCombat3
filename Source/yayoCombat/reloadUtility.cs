@@ -40,10 +40,10 @@ internal class reloadUtility
             var thing = ThingMaker.MakeThing(cp.AmmoDef);
             thing.stackCount = Mathf.Min(thing.def.stackLimit, num) * cp.Props.ammoCountPerCharge;
             num -= thing.stackCount;
-            GenPlace.TryPlaceThing(thing, p.Position, p.Map, ThingPlaceMode.Near);
+            GenPlace.TryPlaceThing(thing, p.Position, p.MapHeld, ThingPlaceMode.Near);
         }
 
-        cp.Props.soundReload.PlayOneShot(new TargetInfo(p.Position, p.Map));
+        cp.Props.soundReload.PlayOneShot(new TargetInfo(p.Position, p.MapHeld));
     }
 
     internal static void TryThingEjectAmmoDirect(Thing w, bool forbidden = false, Pawn pawn = null)
@@ -73,11 +73,11 @@ internal class reloadUtility
             num -= thing.stackCount;
             if (pawn != null)
             {
-                GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
+                GenPlace.TryPlaceThing(thing, pawn.Position, pawn.MapHeld, ThingPlaceMode.Near);
             }
             else
             {
-                GenPlace.TryPlaceThing(thing, w.Position, w.Map, ThingPlaceMode.Near);
+                GenPlace.TryPlaceThing(thing, w.Position, w.MapHeld, ThingPlaceMode.Near);
             }
         }
     }
@@ -90,7 +90,7 @@ internal class reloadUtility
         }
 
         var p = cp.Wearer;
-        if (p?.inventory?.innerContainer == null)
+        if (p?.inventory?.innerContainer == null || p.Dead)
         {
             return;
         }
@@ -121,9 +121,9 @@ internal class reloadUtility
             for (var i = thingsToReload.Count - 1; i >= 0; i--)
             {
                 var ammoToUse = Mathf.Min(maxAmmoNeeded, thingsToReload[i].stackCount);
-                if (!p.inventory.innerContainer.TryDrop(thingsToReload[i], p.Position, p.Map, ThingPlaceMode.Direct,
+                if (!p.inventory.innerContainer.TryDrop(thingsToReload[i], p.Position, p.MapHeld, ThingPlaceMode.Direct,
                         ammoToUse, out var resultingThing) && !p.inventory.innerContainer.TryDrop(thingsToReload[i],
-                        p.Position, p.Map, ThingPlaceMode.Near, ammoToUse, out resultingThing))
+                        p.Position, p.MapHeld, ThingPlaceMode.Near, ammoToUse, out resultingThing))
                 {
                     continue; // cant generate item?
                 }
