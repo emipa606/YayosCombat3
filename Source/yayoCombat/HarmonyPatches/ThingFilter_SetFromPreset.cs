@@ -9,7 +9,7 @@ internal class ThingFilter_SetFromPreset
 {
     private static bool Prefix(ThingFilter __instance, StorageSettingsPreset preset)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

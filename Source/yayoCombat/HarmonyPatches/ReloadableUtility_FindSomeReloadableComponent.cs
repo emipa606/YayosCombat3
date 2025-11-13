@@ -10,7 +10,7 @@ internal class ReloadableUtility_FindSomeReloadableComponent
 {
     private static void Postfix(ref IReloadableComp __result, Pawn pawn, bool allowForcedReload)
     {
-        if (!yayoCombat.ammo || __result != null)
+        if (!YayoCombatCore.ammo || __result != null)
         {
             return;
         }

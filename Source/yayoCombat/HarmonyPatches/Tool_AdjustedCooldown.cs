@@ -10,7 +10,7 @@ internal class Tool_AdjustedCooldown
     [HarmonyPriority(0)]
     private static void Postfix(ref float __result, Thing ownerEquipment)
     {
-        if (yayoCombat.meleeRandom > 0)
+        if (YayoCombatCore.meleeRandom > 0)
         {
             return;
         }
@@ -35,7 +35,7 @@ internal class Tool_AdjustedCooldown
             return;
         }
 
-        var num = yayoCombat.meleeDelay * (1f + ((Rand.Value - 0.5f) * yayoCombat.meleeRandom));
+        var num = YayoCombatCore.meleeDelay * (1f + ((Rand.Value - 0.5f) * YayoCombatCore.meleeRandom));
         __result = Mathf.Max(__result * num, 0.2f);
     }
 }

@@ -12,9 +12,9 @@ public class Verb_LaunchProjectile_TryCastShot
         bool ___canHitNonTargetPawnsNow, bool ___preventFriendlyFire)
     {
         var localTargetInfo = ___currentTarget;
-        if (!yayoCombat.advShootAcc || !yayoCombat.turretAcc && !__instance.CasterIsPawn ||
-            !yayoCombat.mechAcc && (!__instance.CasterIsPawn || __instance.CasterPawn.RaceProps.IsMechanoid) ||
-            yayoCombat.colonistAcc && (!__instance.CasterIsPawn || !__instance.CasterPawn.IsColonist))
+        if (!YayoCombatCore.advShootAcc || !YayoCombatCore.turretAcc && !__instance.CasterIsPawn ||
+            !YayoCombatCore.mechAcc && (!__instance.CasterIsPawn || __instance.CasterPawn.RaceProps.IsMechanoid) ||
+            YayoCombatCore.colonistAcc && (!__instance.CasterIsPawn || !__instance.CasterPawn.IsColonist))
         {
             return true;
         }
@@ -90,7 +90,7 @@ public class Verb_LaunchProjectile_TryCastShot
                 {
                     var intVec = localTargetInfo.Cell + GenRadial.RadialPattern[num2];
                     var projectileHitTypes = ProjectileHitFlags.NonTargetWorld;
-                    if (Rand.Chance(yayoCombat.s_missBulletHit))
+                    if (Rand.Chance(YayoCombatCore.s_missBulletHit))
                     {
                         projectileHitTypes = ProjectileHitFlags.All;
                     }
@@ -122,7 +122,7 @@ public class Verb_LaunchProjectile_TryCastShot
         if (__instance.CasterIsPawn)
         {
             factorSkill = __instance.CasterPawn.skills == null
-                ? yayoCombat.baseSkill / 20f
+                ? YayoCombatCore.baseSkill / 20f
                 : __instance.CasterPawn.skills.GetSkill(SkillDefOf.Shooting).levelInt / 20f;
             factorStat = 1f - (__instance.caster.GetStatValue(StatDefOf.ShootingAccuracyPawn) * factorSkill);
         }
@@ -137,7 +137,7 @@ public class Verb_LaunchProjectile_TryCastShot
             }
             else
             {
-                factorSkill = yayoCombat.baseSkill / 20f;
+                factorSkill = YayoCombatCore.baseSkill / 20f;
             }
 
             factorStat = 1f - (factorStat * factorSkill);
@@ -154,7 +154,7 @@ public class Verb_LaunchProjectile_TryCastShot
         if (__instance.EquipmentSource != null &&
             __instance.EquipmentSource.def.equipmentType != EquipmentType.None)
         {
-            missRadius *= (((yayoCombat.s_accEf * factorStat) + (1f - yayoCombat.s_accEf)) * factorAir) +
+            missRadius *= (((YayoCombatCore.s_accEf * factorStat) + (1f - YayoCombatCore.s_accEf)) * factorAir) +
                           (1f - factorAir);
         }
 
@@ -170,7 +170,7 @@ public class Verb_LaunchProjectile_TryCastShot
             resultingLine.ChangeDestToMissWild(shotReport.AimOnTargetChance_StandardTarget, false,
                 __instance.caster != null ? __instance.caster.Map : localTargetInfo.Thing.Map);
             var targetPawns = ProjectileHitFlags.NonTargetWorld;
-            if (Rand.Chance(yayoCombat.s_missBulletHit) && ___canHitNonTargetPawnsNow)
+            if (Rand.Chance(YayoCombatCore.s_missBulletHit) && ___canHitNonTargetPawnsNow)
             {
                 targetPawns |= ProjectileHitFlags.NonTargetPawns;
             }

@@ -10,7 +10,7 @@ internal class ReloadableUtility_WearerOf
 {
     private static void Postfix(ref Pawn __result, IReloadableComp reloadable)
     {
-        if (!yayoCombat.ammo || __result != null)
+        if (!YayoCombatCore.ammo || __result != null)
         {
             return;
         }

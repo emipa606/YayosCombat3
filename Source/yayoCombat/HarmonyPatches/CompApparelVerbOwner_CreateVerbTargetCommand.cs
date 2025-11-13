@@ -14,7 +14,7 @@ internal class CompApparelVerbOwner_CreateVerbTargetCommand
             return true;
         }
 
-        if (!yayoCombat.ammo || !gear.def.IsWeapon)
+        if (!YayoCombatCore.ammo || !gear.def.IsWeapon)
         {
             return true;
         }

@@ -43,7 +43,7 @@ internal class ThingSetMaker_TraderStock_Generate
     private static void addAmmo(TraderKindDef traderKindDef, Faction makingFaction, PlanetTile forTile,
         List<Thing> outThings)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return;
         }
@@ -119,7 +119,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 primitiveAmount *= 0.5f;
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * primitiveAmount);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * primitiveAmount);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_primitive"));
@@ -128,7 +128,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 outThings.Add(thing);
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * primitiveAmount * 0.40f);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * primitiveAmount * 0.40f);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_primitive_fire"));
@@ -137,7 +137,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 outThings.Add(thing);
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * primitiveAmount * 0.25f);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * primitiveAmount * 0.25f);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_primitive_emp"));
@@ -161,7 +161,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 industrialAmount /= (int)TechLevel.Industrial - (int)tech;
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * industrialAmount);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * industrialAmount);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_industrial"));
@@ -170,7 +170,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 outThings.Add(thing);
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * industrialAmount * 0.40f);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * industrialAmount * 0.40f);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_industrial_fire"));
@@ -179,7 +179,7 @@ internal class ThingSetMaker_TraderStock_Generate
                 outThings.Add(thing);
             }
 
-            count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * industrialAmount * 0.25f);
+            count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * industrialAmount * 0.25f);
             if (count > 20)
             {
                 thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_industrial_emp"));
@@ -206,7 +206,7 @@ internal class ThingSetMaker_TraderStock_Generate
             spacerAmount /= (int)TechLevel.Spacer - (int)tech;
         }
 
-        count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * spacerAmount);
+        count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * spacerAmount);
         if (count > 20)
         {
             thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_spacer"));
@@ -215,7 +215,7 @@ internal class ThingSetMaker_TraderStock_Generate
             outThings.Add(thing);
         }
 
-        count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * spacerAmount * 0.40f);
+        count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * spacerAmount * 0.40f);
         if (count > 20)
         {
             thing = ThingMaker.MakeThing(ThingDef.Named("yy_ammo_spacer_fire"));
@@ -224,7 +224,7 @@ internal class ThingSetMaker_TraderStock_Generate
             outThings.Add(thing);
         }
 
-        count = Mathf.RoundToInt(Rand.Range(min, max) * yayoCombat.ammoGen * spacerAmount * 0.25f);
+        count = Mathf.RoundToInt(Rand.Range(min, max) * YayoCombatCore.ammoGen * spacerAmount * 0.25f);
         if (count <= 20)
         {
             return;

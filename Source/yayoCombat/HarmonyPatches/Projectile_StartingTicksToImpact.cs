@@ -15,10 +15,10 @@ internal static class Projectile_StartingTicksToImpact
             return true;
         }
 
-        var num = __instance.def.projectile.SpeedTilesPerTick * yayoCombat.bulletSpeed;
-        if (num >= yayoCombat.maxBulletSpeed * 0.01f)
+        var num = __instance.def.projectile.SpeedTilesPerTick * YayoCombatCore.bulletSpeed;
+        if (num >= YayoCombatCore.maxBulletSpeed * 0.01f)
         {
-            num = yayoCombat.maxBulletSpeed * 0.01f;
+            num = YayoCombatCore.maxBulletSpeed * 0.01f;
         }
 
         var num2 = (___origin - ___destination).magnitude / num;

@@ -14,7 +14,7 @@ internal class DamageWorker_AddInjury
     private static bool Prefix(Verse.DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn,
         DamageWorker.DamageResult result)
     {
-        if (!yayoCombat.advArmor)
+        if (!YayoCombatCore.advArmor)
         {
             return true;
         }

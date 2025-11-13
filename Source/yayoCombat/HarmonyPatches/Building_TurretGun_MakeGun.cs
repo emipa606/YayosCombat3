@@ -8,7 +8,7 @@ internal class Building_TurretGun_MakeGun
 {
     private static bool Prefix(Building_TurretGun __instance)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

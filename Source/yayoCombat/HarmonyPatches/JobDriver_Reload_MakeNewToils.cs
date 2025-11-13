@@ -14,7 +14,7 @@ internal class JobDriver_Reload_MakeNewToils
     private static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, JobDriver_Reload __instance, Pawn ___pawn,
         Job ___job)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             foreach (var value in values)
             {

@@ -11,7 +11,7 @@ internal class ThingWithComps_GetFloatMenuOptions
     [HarmonyPriority(0)]
     private static void Postfix(ref IEnumerable<FloatMenuOption> __result, ThingWithComps __instance, Pawn selPawn)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return;
         }

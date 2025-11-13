@@ -10,7 +10,7 @@ internal class Pawn_Tick
     [HarmonyPriority(0)]
     private static void Postfix(Pawn __instance)
     {
-        if (!yayoCombat.ammo || !__instance.Drafted || !__instance.IsHashIntervalTick(60) ||
+        if (!YayoCombatCore.ammo || !__instance.Drafted || !__instance.IsHashIntervalTick(60) ||
             __instance.CurJobDef != JobDefOf.Wait_Combat && __instance.CurJobDef != JobDefOf.AttackStatic &&
             __instance.CurJobDef != JobDefOf.Reload ||
             __instance.equipment == null)
