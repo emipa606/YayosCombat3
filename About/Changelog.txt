@@ -1,5 +1,9 @@
 # Changelog for YayosCombat3
 
+1.6.4 - HugsLib dependency removed, thanks to Zaljerem!
+Used DeepL to update translations for ChineseSimplified, French, German, Russian
+
+
 1.6.3 - Fixed ammo spawning on death
 
 

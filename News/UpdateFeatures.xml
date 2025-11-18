@@ -11,4 +11,10 @@
 The Yayo's Animation-mod can be used for this instead as it has the same features.
 https://steamcommunity.com/sharedfiles/filedetails/?id=2877292196</content>
   </HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="YayosCombat3_UpdateFeatureBase">
+		<defName>YayosCombat3_1_6_3</defName>
+		<assemblyVersion>1.6.3</assemblyVersion>
+		<content>This update of the mod removes the need for HugsLib, thanks to the help of Zaljerem!</content>
+	</HugsLib.UpdateFeatureDef>
 </Defs>
+

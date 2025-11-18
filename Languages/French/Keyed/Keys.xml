@@ -45,4 +45,12 @@
   <eject_AmmoAmount>Ejecter les munitions ({0} {1})</eject_AmmoAmount>
   <meleeDelayNew_desc>Plus la valeur est petite, plus la vitesse d'attaque en mêlée est rapide. Plus la vitesse d'attaque est rapide, moins les dégâts sont maintenus automatiquement pour maintenir l'équilibre.\n- 0.2~2, défaut = 0.7, vanilla = 1</meleeDelayNew_desc>
   <meleeRandomNew_desc>Cette valeur modifie aléatoirement le délai d'attaque. Cette valeur est basée sur la vitesse d'attaque unique de l'arme, ce qui permet de maintenir un équilibre. 0~1,5, défaut = 1,3, vanilla = 0</meleeRandomNew_desc>
+  <ycModName>Yayo's Combat</ycModName>
+  <ycombat_CurrentModVersion>Version installée du mod : {0}</ycombat_CurrentModVersion>
+  <reset_all>Réinitialiser tout</reset_all>
+  <ammoandreloading>Munitions et rechargement</ammoandreloading>
+  <melee>Mêlée</melee>
+  <armornaccuracy>Armure / Précision</armornaccuracy>
+  <shootingAccuracy>Précision de tir</shootingAccuracy>
+  <misc>Divers</misc>
 </LanguageData>

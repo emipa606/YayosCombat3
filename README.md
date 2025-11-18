@@ -1,6 +1,6 @@
 # [Yayo's Combat 3 (Continued)](https://steamcommunity.com/sharedfiles/filedetails/?id=2854006492)
 
-![Image](https://i.postimg.cc/1X4HT06h/Info.png)
+![Image](https://img.litet.net/logos/Info.png)
 
 Update of YAYOs mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2038409475
@@ -17,9 +17,9 @@ The advanced animations have been removed from the mod, if you want these animat
 - A big thanks to Ferris that made most of the work for the 1.5 update, without them this would have taken a lot longer!
 - Also check out the [Yayo's Combat 3 - Addon](https://steamcommunity.com/sharedfiles/filedetails/?id=2796514196) by Syrus, it contains expanded ammo handling and some compatibility fixes for other mods.
 
-![Image](https://i.postimg.cc/8csH3dWV/Notice.png)
+![Image](https://img.litet.net/logos/Notice.png)
 	
-![Image](https://i.postimg.cc/hvhrw8xB/Original-Description.png)
+![Image](https://img.litet.net/logos/OriginalDescription.png)
 
 # *** Completely changes the combat system**
 
@@ -30,7 +30,7 @@ Penetration becomes very important.
 High-tech armor is no longer pierced by Low-tech weapon
 
 
-![Image](https://i.postimg.cc/43gmJC0V/9P76nG3.gif)
+![Image](https://img.litet.net/9P76nG3.gif)
 
 
 # *** Ammunition system and Loadout**
@@ -39,20 +39,20 @@ All ranged weapons are changed to consume ammunition.
 When the enemy runs out of ammo, they will melee combat with a gun.
 
 
-![Image](https://i.postimg.cc/g0Y7hDBk/SWopiu3.gif)
+![Image](https://img.litet.net/SWopiu3.gif)
 
 
 Ammunition is divided according to techlevel and damage type.
 For example, flamethrowers require industrial explosive ammunition.
 
 
-![Image](https://i.postimg.cc/Pqt7D4VR/LUrOben.png)
+![Image](https://img.litet.net/LUrOben.png)
 
 
 You can set the loadout of ammo and medicine in the drug policy.
 
 
-![Image](https://i.postimg.cc/ryBMrBG2/TVI7EQR.png)
+![Image](https://img.litet.net/TVI7EQR.png)
 
 
 # *** Other features**
@@ -70,7 +70,7 @@ You can set the loadout of ammo and medicine in the drug policy.
 
 
 
-![Image](https://i.postimg.cc/7LxRzVtR/forUaNt.png)
+![Image](https://img.litet.net/forUaNt.png)
 
 
 # *** Detail**
@@ -155,7 +155,7 @@ We will no longer update mods.
 Since the source code is included and uploaded, you can receive the source code by subscribing to the mod.
 Any mods are allowed to be uploaded fresh, and if someone wants to, I'm fine with delegating permission to the mod itself to continue on my behalf. (In this case, I will upload the mod for you, but in the long run, you will have to deal with bugs and rimworld versions)
 
-![Image](https://i.postimg.cc/x8qR7GH9/Reporting-Issues.png)
+![Image](https://img.litet.net/logos/ReportingIssues.png)
 
 
 

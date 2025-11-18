@@ -8,29 +8,29 @@ namespace yayoCombat.HarmonyPatches;
 internal class Tool_AdjustedCooldown
 {
     [HarmonyPriority(0)]
-    private static void Postfix(ref float __result, Thing ownerEquipment)
+    public static void Postfix(ref float __result, Thing ownerEquipment)
     {
-        if (YayoCombatCore.meleeRandom > 0)
+        if(YayoCombatCore.meleeRandom > 0)
         {
             return;
         }
 
-        if (ownerEquipment == null)
+        if(ownerEquipment == null)
         {
             return;
         }
 
-        if (!(__result > 0f))
+        if(!(__result > 0f))
         {
             return;
         }
 
-        if (ownerEquipment.ParentHolder is not { ParentHolder: Pawn })
+        if(ownerEquipment.ParentHolder is not { ParentHolder: Pawn })
         {
             return;
         }
 
-        if (ownerEquipment.def is not { IsMeleeWeapon: true })
+        if(ownerEquipment.def is not { IsMeleeWeapon: true })
         {
             return;
         }
