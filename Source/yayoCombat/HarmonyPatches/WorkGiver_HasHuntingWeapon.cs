@@ -9,7 +9,7 @@ internal class WorkGiver_HasHuntingWeapon
 {
     private static bool Postfix(bool __result, Pawn p)
     {
-        if (!yayoCombat.ammo || !__result)
+        if (!YayoCombatCore.ammo || !__result)
         {
             return __result;
         }

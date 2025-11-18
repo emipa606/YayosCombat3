@@ -9,7 +9,7 @@ public static class Thing_TakeDamage
 {
     private static void Prefix(ref DamageInfo dinfo)
     {
-        if (yayoCombat.meleeDelay != 1)
+        if (YayoCombatCore.meleeDelay != 1)
         {
             return;
         }
@@ -24,7 +24,7 @@ public static class Thing_TakeDamage
             return;
         }
 
-        var amount = Mathf.Max(1f, Mathf.RoundToInt(dinfo.Amount * yayoCombat.meleeDelay));
+        var amount = Mathf.Max(1f, Mathf.RoundToInt(dinfo.Amount * YayoCombatCore.meleeDelay));
         dinfo.SetAmount(amount);
     }
 }

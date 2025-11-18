@@ -106,7 +106,7 @@ internal class reloadUtility
         }
 
 
-        if (thingsToReload.Count == 0 && !p.RaceProps.Humanlike && yayoCombat.refillMechAmmo)
+        if (thingsToReload.Count == 0 && !p.RaceProps.Humanlike && YayoCombatCore.refillMechAmmo)
         {
             var thing = ThingMaker.MakeThing(cp.AmmoDef);
             thing.stackCount = cp.MaxAmmoNeeded(true);
@@ -154,7 +154,7 @@ internal class reloadUtility
             return;
         }
 
-        if (yayoCombat.supplyAmmoDist < 0)
+        if (YayoCombatCore.supplyAmmoDist < 0)
         {
             return;
         }
@@ -165,7 +165,7 @@ internal class reloadUtility
             reservableThings = RefuelWorkGiverUtility.FindEnoughReservableThings(
                 desiredQuantity: new IntRange(cp.MinAmmoNeeded(false), cp.MaxAmmoNeeded(false)), pawn: p,
                 rootCell: p.Position,
-                validThing: t => t.def == cp.AmmoDef && p.Position.DistanceTo(t.Position) <= yayoCombat.supplyAmmoDist);
+                validThing: t => t.def == cp.AmmoDef && p.Position.DistanceTo(t.Position) <= YayoCombatCore.supplyAmmoDist);
         }
         catch (Exception ex)
         {

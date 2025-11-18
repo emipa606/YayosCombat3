@@ -11,13 +11,13 @@ internal class CompApparelVerbOwner_Charged_PostPostMake
     [HarmonyPriority(0)]
     private static void Postfix(CompApparelVerbOwner_Charged __instance, ref int ___remainingCharges)
     {
-        if (!yayoCombat.ammo || !__instance.parent.def.IsWeapon)
+        if (!YayoCombatCore.ammo || !__instance.parent.def.IsWeapon)
         {
             return;
         }
 
         ___remainingCharges = GenTicks.TicksGame <= 5
-            ? Mathf.RoundToInt(__instance.Props.maxCharges * yayoCombat.s_enemyAmmo)
+            ? Mathf.RoundToInt(__instance.Props.maxCharges * YayoCombatCore.s_enemyAmmo)
             : 0;
     }
 }

@@ -137,7 +137,7 @@ public static class ArmorUtility
             ? pawn.health.summaryHealth.SummaryHealthPercent
             : armorThing.HitPoints / (float)armorThing.MaxHitPoints;
         var defenceRating = Mathf.Max((armorRating * 0.9f) - num, 0f);
-        var getHitRating = 1f - yayoCombat.s_armorEf;
+        var getHitRating = 1f - YayoCombatCore.s_armorEf;
         if (randomZeroOne * getHitRating < defenceRating * armorHpPer)
         {
             if (Rand.Value < Mathf.Min(leftArmor, 0.9f))

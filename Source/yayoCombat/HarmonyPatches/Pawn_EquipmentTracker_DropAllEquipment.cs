@@ -8,7 +8,7 @@ internal class Pawn_EquipmentTracker_DropAllEquipment
 {
     private static void Prefix(Pawn_EquipmentTracker __instance, ThingOwner<ThingWithComps> ___equipment)
     {
-        if (!yayoCombat.ammo || __instance.pawn.Faction?.IsPlayer == true)
+        if (!YayoCombatCore.ammo || __instance.pawn.Faction?.IsPlayer == true)
         {
             return;
         }

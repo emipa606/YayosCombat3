@@ -14,7 +14,7 @@ internal class DrugPolicy_InitializeIfNeeded
     [HarmonyPriority(0)]
     private static bool Prefix(DrugPolicy __instance)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }
@@ -31,7 +31,7 @@ internal class DrugPolicy_InitializeIfNeeded
         {
             if (item.category == ThingCategory.Item &&
                 (item.FirstThingCategory == ThingCategoryDef.Named("yy_ammo_category") ||
-                 yayoCombat.ar_customAmmoDef.Contains(item)))
+                 YayoCombatCore.ar_customAmmoDef.Contains(item)))
             {
                 list.Add(new DrugPolicyEntry
                 {

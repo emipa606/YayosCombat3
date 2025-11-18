@@ -15,7 +15,7 @@ internal class ThingWithComps_GetGizmos
             yield return gizmo;
         }
 
-        if (!yayoCombat.ammo || !PawnAttackGizmoUtility.CanShowEquipmentGizmos())
+        if (!YayoCombatCore.ammo || !PawnAttackGizmoUtility.CanShowEquipmentGizmos())
         {
             yield break;
         }
