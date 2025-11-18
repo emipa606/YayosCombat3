@@ -8,7 +8,7 @@ internal class CompApparelReloadable_UsedOnce
 {
     private static void Postfix(CompApparelReloadable __instance)
     {
-        if (!yayoCombat.ammo || __instance.Wearer == null)
+        if (!YayoCombatCore.ammo || __instance.Wearer == null)
         {
             return;
         }

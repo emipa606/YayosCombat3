@@ -14,7 +14,7 @@ internal class DrugPolicy_ExposeData
     [HarmonyPriority(1000)]
     private static bool Prefix(DrugPolicy __instance)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

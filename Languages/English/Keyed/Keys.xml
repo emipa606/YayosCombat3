@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+  <ycModName>Yayo's Combat</ycModName>
+  <reset_all>Reset All</reset_all>
   <eject_Ammo>Eject Ammo</eject_Ammo>
   <eject_AmmoAmount>Eject Ammo ({0} {1})</eject_AmmoAmount>
   <refillMechAmmo_title>Refill mech ammo</refillMechAmmo_title>
   <refillMechAmmo_desc>Non-humanoids will reload weapons</refillMechAmmo_desc>
+  <ammoandreloading>Ammo and Reloading</ammoandreloading>
   <ammo_title># Use of ammunition system</ammo_title>
   <ammo_desc>Modified to require ammo when using all ranged weapons.\n\nGame restart required</ammo_desc>
   <ammoGen_title>       - Multiply ammo generated</ammoGen_title>
@@ -16,6 +19,7 @@
   <supplyAmmoDist_desc>If all of the ammo is exhausted in the draft state, the ammo within a distance of X is used for reloading.-1 : Turn off function</supplyAmmoDist_desc>
   <advAni_title># Use Advanced Combat Animation</advAni_title>
   <advAni_desc>Activates combat animations for melee and ranged weapons.\n\ndefault = on, vanilla = off</advAni_desc>
+<melee>Melee</melee>
   <meleeDelay_title>       - Melee attack Delay and power</meleeDelay_title>
   <meleeDelay_desc>The smaller the value, the faster the melee attack speed. The faster the attack speed, the less damage is automatically maintained to maintain balance.\n\n0.2~2, default = 0.7, vanilla = 1</meleeDelay_desc>
   <meleeRandom_title>       - Melee Attack Random Delay</meleeRandom_title>
@@ -26,6 +30,7 @@
   <meleeDelayNew_desc>The smaller the value, the faster the melee attack speed. The faster the attack speed, the less damage is automatically maintained to maintain balance.\n\n0.2~2, default = 0.7, vanilla = 1</meleeDelayNew_desc>
   <meleeRandomNew_title># Melee Attack Random Delay</meleeRandomNew_title>
   <meleeRandomNew_desc>This value randomly changes the attack delay. This affects based on the weapon's unique attack speed, so balance is maintained.\n\n0~1.5, default = 1.3, vanilla = 0</meleeRandomNew_desc>
+<armornaccuracy>Armor / Accuracy</armornaccuracy>
   <handProtect_title># Hand and foot protective armor</handProtect_title>
   <handProtect_desc>Armor that protects your arms also protects your hands.\nArmor that protects your legs also protects your feet.\n\nGame restart required.</handProtect_desc>
   <advArmor_title># Use Advanced Armor Algorithms</advArmor_title>
@@ -34,6 +39,7 @@
   <armorEf_desc>0~100, default = 50%</armorEf_desc>
   <unprotectDmg_title>       - Unprotected damage</unprotectDmg_title>
   <unprotectDmg_desc>Calculates Armor value and adjusts the damage you take if you cannot deflect or reduce an attack.\n\n0.1~10, default = 1.1, vanilla = 1</unprotectDmg_desc>
+<shootingAccuracy>Shooting Accuracy</shootingAccuracy>
   <advShootAcc_title># Use Advanced Accuracy Algorithm</advShootAcc_title>
   <advShootAcc_desc>The Pawn's shooting skill and various stats are more severely affected by accuracy.\nIf you have good shooting ability, you can overcome the limitations of the weapon to some extent.\n\ndefault = on, vanilla = off</advShootAcc_desc>
   <accEf_title>       - Improved Accuracy (%)</accEf_title>
@@ -48,6 +54,7 @@
   <baseSkill_desc>0 ~ 20, default = 5 (turret, mechanoid, animal ...)</baseSkill_desc>
   <colonistAcc_title>       - Only Colonist</colonistAcc_title>
   <colonistAcc_desc>default = off</colonistAcc_desc>
+<misc>Misc</misc>
   <bulletSpeed_title># Bullet Speed Multiply</bulletSpeed_title>
   <bulletSpeed_desc>Set the speed of the bullet.\n\n0.01 ~ 100, default = 3, vanilla = 1</bulletSpeed_desc>
   <maxBulletSpeed_title># Max Bullet Speed</maxBulletSpeed_title>

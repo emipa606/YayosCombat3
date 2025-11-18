@@ -9,7 +9,7 @@ internal class TraderKindDef_WillTrade
 {
     private static bool Prefix(ref bool __result, TraderKindDef __instance, ThingDef td)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

@@ -11,7 +11,7 @@ internal class JobGiver_MoveDrugsToInventory_FindDrugFor
     private static bool Prefix(ref Thing __result, Pawn pawn,
         ThingDef drugDef)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

@@ -9,13 +9,13 @@ internal class Pawn_DrugPolicyTracker_AllowedToTakeToInventory
 {
     private static bool Prefix(ref bool __result, Pawn_DrugPolicyTracker __instance, ThingDef thingDef)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }
 
         if (thingDef.FirstThingCategory == ThingCategoryDef.Named("yy_ammo_category") ||
-            yayoCombat.ar_customAmmoDef.Contains(thingDef) ||
+            YayoCombatCore.ar_customAmmoDef.Contains(thingDef) ||
             thingDef.FirstThingCategory == ThingCategoryDefOf.Medicine ||
             thingDef.FirstThingCategory == ThingCategoryDefOf.Foods)
         {

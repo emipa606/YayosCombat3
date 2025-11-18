@@ -10,7 +10,7 @@ internal class Dialog_ManageDrugPolicies_DoEntryRow
 {
     private static bool Prefix(Rect rect, DrugPolicyEntry entry)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

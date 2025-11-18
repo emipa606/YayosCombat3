@@ -9,7 +9,7 @@ internal class CompApparelReloadable_PostExposeData
 {
     private static bool Prefix(CompApparelReloadable __instance, ref int ___remainingCharges)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return true;
         }

@@ -12,7 +12,7 @@ internal class PawnGenerator_GenerateGearFor
     [HarmonyPriority(Priority.Last)]
     private static void Postfix(Pawn pawn)
     {
-        if (!yayoCombat.ammo)
+        if (!YayoCombatCore.ammo)
         {
             return;
         }
@@ -48,14 +48,14 @@ internal class PawnGenerator_GenerateGearFor
         foreach (var comp in allWeaponsComps)
         {
             int charges;
-            if (yayoCombat.s_enemyAmmo <= 1f || pawn?.Faction is { IsPlayer: true })
+            if (YayoCombatCore.s_enemyAmmo <= 1f || pawn?.Faction is { IsPlayer: true })
             {
                 charges = Mathf.Min(comp.MaxCharges,
-                    Mathf.RoundToInt(comp.MaxCharges * yayoCombat.s_enemyAmmo * Rand.Range(0.7f, 1.3f)));
+                    Mathf.RoundToInt(comp.MaxCharges * YayoCombatCore.s_enemyAmmo * Rand.Range(0.7f, 1.3f)));
             }
             else
             {
-                charges = Mathf.RoundToInt(comp.MaxCharges * yayoCombat.s_enemyAmmo * Rand.Range(0.7f, 1.3f));
+                charges = Mathf.RoundToInt(comp.MaxCharges * YayoCombatCore.s_enemyAmmo * Rand.Range(0.7f, 1.3f));
             }
 
             Traverse.Create(comp).Field("remainingCharges").SetValue(charges);
