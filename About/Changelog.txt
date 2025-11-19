@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.5 - Settings should now be applied correctly on game-start
+
+
 1.6.4 - HugsLib dependency removed, thanks to Zaljerem!
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

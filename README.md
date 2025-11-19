@@ -7,6 +7,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2038409475
 Based on the abandoned 1.3 update by Ogliss
 https://steamcommunity.com/sharedfiles/filedetails/?id=2513695736
 
+**From 1.6, this mod does no longer require HugsLib, thanks to Zaljerem!**
+
 ## Changes from 1.5
 
 The advanced animations have been removed from the mod, if you want these animations you can add [Yayo's Animation](https://steamcommunity.com/sharedfiles/filedetails/?id=2877292196) as it already does the same animations.

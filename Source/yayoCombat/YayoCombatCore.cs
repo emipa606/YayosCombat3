@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Linq;
 using UnityEngine;
 using Verse;
@@ -107,6 +108,10 @@ public static class YayoCombatCore
             }
         }
         importOldHugsLibSettings();
+
+        ApplySettingsFrom(YayoCombatMod.Instance.Settings);
+
+        new Harmony("Mlie.YayosCombat3").PatchAll(Assembly.GetExecutingAssembly());
     }
 
     private static bool containCheckByList(string origin, List<string> ar)

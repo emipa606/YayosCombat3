@@ -19,10 +19,6 @@ public class YayoCombatMod : Mod
         Settings = GetSettings<YayoCombatSettings>();
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
         Instance = this;
-
-        YayoCombatCore.ApplySettingsFrom(Settings);
-
-        new Harmony("Mlie.YayosCombat3").PatchAll();
     }
 
     public override void DoSettingsWindowContents(Rect inRect)
