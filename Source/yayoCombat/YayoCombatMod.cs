@@ -20,6 +20,8 @@ public class YayoCombatMod : Mod
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
         Instance = this;
 
+        YayoCombatCore.ApplySettingsFrom(Settings);
+
         new Harmony("Mlie.YayosCombat3").PatchAll();
     }
 
