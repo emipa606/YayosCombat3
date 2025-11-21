@@ -112,6 +112,7 @@ public static class YayoCombatCore
         ApplySettingsFrom(YayoCombatMod.Instance.Settings);
 
         new Harmony("Mlie.YayosCombat3").PatchAll(Assembly.GetExecutingAssembly());
+        ApplyDefPatches();
     }
 
     private static bool containCheckByList(string origin, List<string> ar)

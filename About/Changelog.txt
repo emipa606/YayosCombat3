@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.6 - Removed world-comp, caused reload-widgets to multiply. Loaded once in the static class instead
+
+
 1.6.5 - Settings should now be applied correctly on game-start
 
 
