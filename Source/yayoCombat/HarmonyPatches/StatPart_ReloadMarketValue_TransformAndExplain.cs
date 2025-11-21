@@ -6,9 +6,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(StatPart_ReloadMarketValue), "TransformAndExplain")]
-public class StatPart_ReloadMarketValue_TransformAndExplain
+public static class StatPart_ReloadMarketValue_TransformAndExplain
 {
-    private static bool Prefix(StatRequest req, ref float val, StringBuilder explanation)
+    public static bool Prefix(StatRequest req, ref float val, StringBuilder explanation)
     {
         if (req.Thing is not { def.IsRangedWeapon: true })
         {

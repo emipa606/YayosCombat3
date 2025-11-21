@@ -6,9 +6,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Pawn_EquipmentTracker), nameof(Pawn_EquipmentTracker.GetGizmos))]
-internal class ThingWithComps_GetGizmos
+public static class ThingWithComps_GetGizmos
 {
-    private static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, Pawn_EquipmentTracker __instance)
+    public static IEnumerable<Gizmo> Postfix(IEnumerable<Gizmo> __result, Pawn_EquipmentTracker __instance)
     {
         foreach (var gizmo in __result)
         {

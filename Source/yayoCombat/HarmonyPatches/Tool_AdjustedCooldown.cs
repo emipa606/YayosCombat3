@@ -5,7 +5,7 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Tool), nameof(Tool.AdjustedCooldown), typeof(Thing))]
-internal class Tool_AdjustedCooldown
+public static class Tool_AdjustedCooldown
 {
     [HarmonyPriority(0)]
     public static void Postfix(ref float __result, Thing ownerEquipment)

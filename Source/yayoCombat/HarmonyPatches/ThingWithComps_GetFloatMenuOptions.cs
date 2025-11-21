@@ -6,10 +6,10 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(ThingWithComps), nameof(ThingWithComps.GetFloatMenuOptions))]
-internal class ThingWithComps_GetFloatMenuOptions
+public static class ThingWithComps_GetFloatMenuOptions
 {
     [HarmonyPriority(0)]
-    private static void Postfix(ref IEnumerable<FloatMenuOption> __result, ThingWithComps __instance, Pawn selPawn)
+    public static void Postfix(ref IEnumerable<FloatMenuOption> __result, ThingWithComps __instance, Pawn selPawn)
     {
         if (!YayoCombatCore.ammo)
         {

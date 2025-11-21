@@ -6,13 +6,13 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(DrugPolicy), "InitializeIfNeeded")]
-internal class DrugPolicy_InitializeIfNeeded
+public static class DrugPolicy_InitializeIfNeeded
 {
     private static readonly AccessTools.FieldRef<DrugPolicy, List<DrugPolicyEntry>> s_entriesInt =
         AccessTools.FieldRefAccess<DrugPolicy, List<DrugPolicyEntry>>("entriesInt");
 
     [HarmonyPriority(0)]
-    private static bool Prefix(DrugPolicy __instance)
+    public static bool Prefix(DrugPolicy __instance)
     {
         if (!YayoCombatCore.ammo)
         {

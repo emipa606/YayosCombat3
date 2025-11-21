@@ -7,10 +7,10 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(PawnGenerator), "GenerateGearFor")]
-internal class PawnGenerator_GenerateGearFor
+public static class PawnGenerator_GenerateGearFor
 {
     [HarmonyPriority(Priority.Last)]
-    private static void Postfix(Pawn pawn)
+    public static void Postfix(Pawn pawn)
     {
         if (!YayoCombatCore.ammo)
         {

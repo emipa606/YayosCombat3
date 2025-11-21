@@ -10,9 +10,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(ThingSetMaker_TraderStock), nameof(ThingSetMaker_TraderStock.Generate))]
-internal class ThingSetMaker_TraderStock_Generate
+public static class ThingSetMaker_TraderStock_Generate
 {
-    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         CodeInstruction returnInstruction = null;
         // Original code

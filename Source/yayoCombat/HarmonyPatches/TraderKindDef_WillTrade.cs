@@ -5,7 +5,7 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(TraderKindDef), nameof(TraderKindDef.WillTrade))]
-internal class TraderKindDef_WillTrade
+public static class TraderKindDef_WillTrade
 {
     public static bool Prefix(ref bool __result, TraderKindDef __instance, ThingDef td)
     {

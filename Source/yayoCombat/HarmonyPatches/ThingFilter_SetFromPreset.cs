@@ -5,9 +5,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(ThingFilter), nameof(ThingFilter.SetFromPreset))]
-internal class ThingFilter_SetFromPreset
+public static class ThingFilter_SetFromPreset
 {
-    private static bool Prefix(ThingFilter __instance, StorageSettingsPreset preset)
+    public static bool Prefix(ThingFilter __instance, StorageSettingsPreset preset)
     {
         if (!YayoCombatCore.ammo)
         {

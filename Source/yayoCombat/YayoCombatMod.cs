@@ -1,6 +1,7 @@
 using HarmonyLib;
 using Mlie;
 using RimWorld;
+using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -19,6 +20,9 @@ public class YayoCombatMod : Mod
         Settings = GetSettings<YayoCombatSettings>();
         currentVersion = VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
         Instance = this;
+        YayoCombatCore.ImportOldHugsLibSettings();
+        YayoCombatCore.ApplySettingsFrom(Instance.Settings);
+        new Harmony("Mlie.YayosCombat3").PatchAll(Assembly.GetExecutingAssembly());
     }
 
     public override void DoSettingsWindowContents(Rect inRect)

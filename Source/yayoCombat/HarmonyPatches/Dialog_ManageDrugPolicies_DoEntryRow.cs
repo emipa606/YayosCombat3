@@ -6,9 +6,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Dialog_ManageDrugPolicies), "DoEntryRow")]
-internal class Dialog_ManageDrugPolicies_DoEntryRow
+public static class Dialog_ManageDrugPolicies_DoEntryRow
 {
-    private static bool Prefix(Rect rect, DrugPolicyEntry entry)
+    public static bool Prefix(Rect rect, DrugPolicyEntry entry)
     {
         if (!YayoCombatCore.ammo)
         {

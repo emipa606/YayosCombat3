@@ -9,9 +9,9 @@ namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Verse.DamageWorker_AddInjury), "ApplyDamageToPart", typeof(DamageInfo), typeof(Pawn),
     typeof(DamageWorker.DamageResult))]
-internal class DamageWorker_AddInjury
+public static class DamageWorker_AddInjury
 {
-    private static bool Prefix(Verse.DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn,
+    public static bool Prefix(Verse.DamageWorker_AddInjury __instance, DamageInfo dinfo, Pawn pawn,
         DamageWorker.DamageResult result)
     {
         if (!YayoCombatCore.advArmor)

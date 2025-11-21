@@ -4,9 +4,9 @@ using RimWorld;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Building_TurretGun), nameof(Building_TurretGun.MakeGun))]
-internal class Building_TurretGun_MakeGun
+public static class Building_TurretGun_MakeGun
 {
-    private static bool Prefix(Building_TurretGun __instance)
+    public static bool Prefix(Building_TurretGun __instance)
     {
         if (!YayoCombatCore.ammo)
         {

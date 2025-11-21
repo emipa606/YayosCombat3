@@ -5,9 +5,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompApparelReloadable), nameof(CompApparelReloadable.PostExposeData))]
-internal class CompApparelReloadable_PostExposeData
+public static class CompApparelReloadable_PostExposeData
 {
-    private static bool Prefix(CompApparelReloadable __instance, ref int ___remainingCharges)
+    public static bool Prefix(CompApparelReloadable __instance, ref int ___remainingCharges)
     {
         if (!YayoCombatCore.ammo)
         {

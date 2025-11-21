@@ -15,6 +15,7 @@ namespace yayoCombat;
 [StaticConstructorOnStartup]
 public static class YayoCombatCore
 {
+    private static bool patchApplied;
     private static int accEf = 60;
     private static int armorEf = 50;
     private static readonly Dictionary<ThingDef, Vector3> eastOffsets = new();
@@ -106,13 +107,7 @@ public static class YayoCombatCore
             {
                 Log.Warning($"YayoCombatCore: error caching oversized offsets: {ex}");
             }
-        }
-        importOldHugsLibSettings();
-
-        ApplySettingsFrom(YayoCombatMod.Instance.Settings);
-
-        new Harmony("Mlie.YayosCombat3").PatchAll(Assembly.GetExecutingAssembly());
-        ApplyDefPatches();
+        }        
     }
 
     private static bool containCheckByList(string origin, List<string> ar)
@@ -141,7 +136,7 @@ public static class YayoCombatCore
         return string.Empty;
     }
 
-    private static void importOldHugsLibSettings()
+    public static void ImportOldHugsLibSettings()
     {
         var hugsLibConfig = Path.Combine(GenFilePaths.SaveDataFolderPath, "HugsLib", "ModSettings.xml");
         if (!new FileInfo(hugsLibConfig).Exists)
@@ -296,6 +291,12 @@ public static class YayoCombatCore
     // Public method to apply the def modifications that original patchDef2 did
     public static void ApplyDefPatches()
     {
+        if(patchApplied)
+        {
+            return;
+        }
+        Log.Message("[YayoCombat] Applying Def patches.");
+        patchApplied = true;
         try
         {
             // HAND PROTECT: modify apparel layer defs and body part groups

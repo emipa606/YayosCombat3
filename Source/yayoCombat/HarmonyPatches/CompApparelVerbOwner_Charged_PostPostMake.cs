@@ -6,10 +6,10 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompApparelVerbOwner_Charged), nameof(CompApparelVerbOwner_Charged.PostPostMake))]
-internal class CompApparelVerbOwner_Charged_PostPostMake
+public static class CompApparelVerbOwner_Charged_PostPostMake
 {
     [HarmonyPriority(0)]
-    private static void Postfix(CompApparelVerbOwner_Charged __instance, ref int ___remainingCharges)
+    public static void Postfix(CompApparelVerbOwner_Charged __instance, ref int ___remainingCharges)
     {
         if (!YayoCombatCore.ammo || !__instance.parent.def.IsWeapon)
         {

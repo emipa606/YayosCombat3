@@ -7,7 +7,7 @@ namespace yayoCombat.HarmonyPatches;
 [HarmonyPatch(typeof(Thing), nameof(Thing.TakeDamage))]
 public static class Thing_TakeDamage
 {
-    private static void Prefix(ref DamageInfo dinfo)
+    public static void Prefix(ref DamageInfo dinfo)
     {
         if (YayoCombatCore.meleeDelay != 1)
         {

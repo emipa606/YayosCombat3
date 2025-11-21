@@ -6,9 +6,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(ReloadableUtility), nameof(ReloadableUtility.FindSomeReloadableComponent))]
-internal class ReloadableUtility_FindSomeReloadableComponent
+public static class ReloadableUtility_FindSomeReloadableComponent
 {
-    private static void Postfix(ref IReloadableComp __result, Pawn pawn, bool allowForcedReload)
+    public static void Postfix(ref IReloadableComp __result, Pawn pawn, bool allowForcedReload)
     {
         if (!YayoCombatCore.ammo || __result != null)
         {

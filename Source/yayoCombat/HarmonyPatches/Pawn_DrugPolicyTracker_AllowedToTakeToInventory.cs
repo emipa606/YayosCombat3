@@ -5,9 +5,9 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Pawn_DrugPolicyTracker), nameof(Pawn_DrugPolicyTracker.AllowedToTakeToInventory))]
-internal class Pawn_DrugPolicyTracker_AllowedToTakeToInventory
+public static class Pawn_DrugPolicyTracker_AllowedToTakeToInventory
 {
-    private static bool Prefix(ref bool __result, Pawn_DrugPolicyTracker __instance, ThingDef thingDef)
+    public static bool Prefix(ref bool __result, Pawn_DrugPolicyTracker __instance, ThingDef thingDef)
     {
         if (!YayoCombatCore.ammo)
         {

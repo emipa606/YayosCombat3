@@ -6,9 +6,9 @@ using Verse.AI;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(JobGiver_MoveDrugsToInventory), "FindDrugFor")]
-internal class JobGiver_MoveDrugsToInventory_FindDrugFor
+public static class JobGiver_MoveDrugsToInventory_FindDrugFor
 {
-    private static bool Prefix(ref Thing __result, Pawn pawn,
+    public static bool Prefix(ref Thing __result, Pawn pawn,
         ThingDef drugDef)
     {
         if (!YayoCombatCore.ammo)

@@ -9,9 +9,9 @@ using Verse.AI;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(JobDriver_Reload), "MakeNewToils")]
-internal class JobDriver_Reload_MakeNewToils
+public static class JobDriver_Reload_MakeNewToils
 {
-    private static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, JobDriver_Reload __instance, Pawn ___pawn,
+    public static IEnumerable<Toil> Postfix(IEnumerable<Toil> values, JobDriver_Reload __instance, Pawn ___pawn,
         Job ___job)
     {
         if (!YayoCombatCore.ammo)

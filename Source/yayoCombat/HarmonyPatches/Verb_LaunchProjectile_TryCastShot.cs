@@ -6,7 +6,7 @@ using Verse;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
-public class Verb_LaunchProjectile_TryCastShot
+public static class Verb_LaunchProjectile_TryCastShot
 {
     public static bool Prefix(
         ref bool __result,

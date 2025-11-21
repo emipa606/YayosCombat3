@@ -4,9 +4,9 @@ using RimWorld;
 namespace yayoCombat.HarmonyPatches;
 
 [HarmonyPatch(typeof(CompApparelReloadable), nameof(CompApparelReloadable.UsedOnce))]
-internal class CompApparelReloadable_UsedOnce
+public static class CompApparelReloadable_UsedOnce
 {
-    private static void Postfix(CompApparelReloadable __instance)
+    public static void Postfix(CompApparelReloadable __instance)
     {
         if (!YayoCombatCore.ammo || __instance.Wearer == null)
         {
