@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.8 - Fixed single use weapons aiming. No ammo crafting when ammo disabled.
+
+
 1.6.7 - Moved the settings-applier to game-start instead. Hopefully it will cause less compatibility issues
 
 

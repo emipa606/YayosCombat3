@@ -6,4 +6,22 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="yayoCombat/yayoCombat.csproj" />
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Defs/">
+    <File Path="../1.6/Defs/ApparelLayerDefs.xml" />
+    <File Path="../1.6/Defs/Jobs.xml" />
+    <File Path="../1.6/Defs/UpdateInfo.xml" />
+    <File Path="../1.6/Defs/yy_ammo_categories.xml" />
+    <File Path="../1.6/Defs/yy_ammo_recipe.xml" />
+    <File Path="../1.6/Defs/yy_ammo.xml" />
+    <File Path="../1.6/Defs/yy_rocket.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/patch_weapon.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Keys.xml" />
+  </Folder>
 </Solution>

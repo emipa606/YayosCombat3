@@ -1,7 +1,6 @@
+using System.Reflection;
 using HarmonyLib;
 using Mlie;
-using RimWorld;
-using System.Reflection;
 using UnityEngine;
 using Verse;
 
@@ -10,10 +9,10 @@ namespace yayoCombat;
 public class YayoCombatMod : Mod
 {
     private static string currentVersion;
+    public static YayoCombatMod Instance;
+    public readonly YayoCombatSettings Settings;
 
     private Vector2 scrollPosition = Vector2.zero;
-    public YayoCombatSettings Settings;
-    public static YayoCombatMod Instance;
 
     public YayoCombatMod(ModContentPack content) : base(content)
     {
@@ -27,20 +26,21 @@ public class YayoCombatMod : Mod
 
     public override void DoSettingsWindowContents(Rect inRect)
     {
-        float scrollHeight = 1000f;
-        Rect viewRect = new Rect(0f, 0f, inRect.width - 20f, scrollHeight);
+        var scrollHeight = 1000f;
+        var viewRect = new Rect(0f, 0f, inRect.width - 20f, scrollHeight);
         Widgets.BeginScrollView(inRect, ref scrollPosition, viewRect);
 
-        Listing_Standard listing = new Listing_Standard();
+        var listing = new Listing_Standard();
         listing.Begin(viewRect);
 
         // --- Reset All Button ---
-        Rect resetRect = listing.GetRect(Text.LineHeight);
-        if(Widgets.ButtonText(resetRect, "reset_all".Translate()))
+        var resetRect = listing.GetRect(Text.LineHeight);
+        if (Widgets.ButtonText(resetRect, "reset_all".Translate()))
         {
             Settings.ResetToDefaults();
         }
-        listing.Gap(12f);
+
+        listing.Gap();
 
         // === Ammo & Reloading ===
         listing.Label("ammoandreloading".Translate());
@@ -195,18 +195,22 @@ public class YayoCombatMod : Mod
             10000f);
 
         listing.CheckboxLabeled("useRocket_title".Translate(), ref Settings.enemyRocket, "useRocket_desc".Translate());
-        if(currentVersion != null)
+        if (currentVersion != null)
         {
             listing.Gap();
             GUI.contentColor = Color.gray;
             listing.Label("ycombat_CurrentModVersion".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
+
         listing.End();
         Widgets.EndScrollView();
     }
 
-    public override string SettingsCategory() { return "ycModName".Translate(); }
+    public override string SettingsCategory()
+    {
+        return "ycModName".Translate();
+    }
 
     public override void WriteSettings()
     {

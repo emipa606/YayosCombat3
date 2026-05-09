@@ -1,7 +1,9 @@
-﻿
-namespace yayoCombat;
+﻿namespace yayoCombat;
 
 public static class StringExtensions
 {
-    public static string Bold(this string str) { return $"<b>{str}</b>"; }
+    public static string Bold(this string str)
+    {
+        return $"<b>{str}</b>";
+    }
 }

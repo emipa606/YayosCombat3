@@ -8,6 +8,6 @@ public static class Root_Play_Start
 {
     public static void Prefix()
     {
-        YayoCombatCore.ApplyDefPatches(); 
+        YayoCombatCore.ApplyDefPatches();
     }
 }

@@ -10,7 +10,7 @@ public class YayoCombatSettings : ModSettings
     public bool advShootAcc = true;
 
 
-    public bool ammo = false;
+    public bool ammo;
     public float ammoGen = 1f;
     public string ammoGenBuffer, maxAmmoBuffer, enemyAmmoBuffer, supplyAmmoDistBuffer;
     public int armorEf = 50;
@@ -18,9 +18,9 @@ public class YayoCombatSettings : ModSettings
     public int baseSkill = 5;
     public string baseSkillBuffer, bulletSpeedBuffer, maxBulletSpeedBuffer;
     public float bulletSpeed = 3f;
-    public bool colonistAcc = false;
+    public bool colonistAcc;
     public int enemyAmmo = 70;
-    public bool enemyRocket = false;
+    public bool enemyRocket;
 
     public bool handProtect = true;
     public float maxAmmo = 1f;
@@ -38,7 +38,7 @@ public class YayoCombatSettings : ModSettings
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref ammo, "ammo", false);
+        Scribe_Values.Look(ref ammo, "ammo");
         Scribe_Values.Look(ref refillMechAmmo, "refillMechAmmo", true);
         Scribe_Values.Look(ref ammoGen, "ammoGen", 1f);
         Scribe_Values.Look(ref maxAmmo, "maxAmmo", 1f);
@@ -59,10 +59,10 @@ public class YayoCombatSettings : ModSettings
         Scribe_Values.Look(ref mechAcc, "mechAcc", true);
         Scribe_Values.Look(ref turretAcc, "turretAcc", true);
         Scribe_Values.Look(ref baseSkill, "baseSkill", 5);
-        Scribe_Values.Look(ref colonistAcc, "colonistAcc", false);
+        Scribe_Values.Look(ref colonistAcc, "colonistAcc");
         Scribe_Values.Look(ref bulletSpeed, "bulletSpeed", 3f);
         Scribe_Values.Look(ref maxBulletSpeed, "maxBulletSpeed", 200f);
-        Scribe_Values.Look(ref enemyRocket, "enemyRocket", false);
+        Scribe_Values.Look(ref enemyRocket, "enemyRocket");
 
         base.ExposeData();
     }

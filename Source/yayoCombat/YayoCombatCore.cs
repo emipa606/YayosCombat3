@@ -1,13 +1,14 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Xml.Linq;
+using HarmonyLib;
+using RimWorld;
 using UnityEngine;
 using Verse;
+using ApparelLayerDefOf = yayoCombat_Defs.ApparelLayerDefOf;
+using BodyPartGroupDefOf = yayoCombat_Defs.BodyPartGroupDefOf;
 
 namespace yayoCombat;
 
@@ -20,7 +21,7 @@ public static class YayoCombatCore
     private static int armorEf = 50;
     private static readonly Dictionary<ThingDef, Vector3> eastOffsets = new();
     private static int enemyAmmo = 70;
-    private static bool enemyRocket = false;
+    private static bool enemyRocket;
     private static bool handProtect = true;
     private static float maxAmmo = 1f;
     private static int missBulletHit = 50;
@@ -32,12 +33,12 @@ public static class YayoCombatCore
     private static readonly Dictionary<ThingDef, Vector3> westOffsets = new();
     public static bool advArmor = true;
     public static bool advShootAcc = true;
-    public static bool ammo = false;
+    public static bool ammo;
     public static float ammoGen = 1f;
-    public static readonly List<ThingDef> ar_customAmmoDef = new();
+    public static readonly List<ThingDef> ar_customAmmoDef = [];
     public static int baseSkill = 5;
     public static float bulletSpeed = 3f;
-    public static bool colonistAcc = false;
+    public static bool colonistAcc;
     public static float maxBulletSpeed = 200f;
     public static bool mechAcc = true;
     public static float meleeDelay = 0.7f;
@@ -50,7 +51,9 @@ public static class YayoCombatCore
     public static int supplyAmmoDist = 4;
     public static bool turretAcc = true;
     public static float unprotectDmg = 1.1f;
+
     public static readonly bool using_AlienRaces;
+
     // Feature flags
     public static readonly bool using_dualWeld;
     public static readonly bool using_meleeAnimations;
@@ -68,53 +71,56 @@ public static class YayoCombatCore
         using_showHands = false;
 
         // Detect mods in load order (rough equivalent to HugsLib check)
-        if(ModsConfig.ActiveModsInLoadOrder
+        if (ModsConfig.ActiveModsInLoadOrder
             .Any(mod => mod.PackageId != null && mod.PackageId.ToLower().Contains("dualwield")))
         {
             using_dualWeld = true;
         }
 
-        if(ModsConfig.ActiveModsInLoadOrder
+        if (ModsConfig.ActiveModsInLoadOrder
             .Any(mod => mod.PackageId != null && mod.PackageId.ToLower().Contains("co.uk.epicguru.meleeanimation")))
         {
             using_meleeAnimations = true;
         }
 
-        if(ModsConfig.ActiveModsInLoadOrder
+        if (ModsConfig.ActiveModsInLoadOrder
             .Any(mod => mod.PackageId != null && mod.PackageId.ToLower().Contains("humanoidalienraces")))
         {
             using_AlienRaces = true;
         }
 
-        if(ModsConfig.ActiveModsInLoadOrder
+        if (ModsConfig.ActiveModsInLoadOrder
             .Any(mod => mod.PackageId != null && mod.PackageId.ToLower().Contains("showmeyourhands")))
         {
             using_showHands = true;
         }
 
         using_Oversized = AccessTools.TypeByName("CompOversizedWeapon") != null;
-        if(using_Oversized)
+        if (!using_Oversized)
         {
-            // Cache per-weapon offsets
-            try
+            return;
+        }
+
+        // Cache per-weapon offsets
+        try
+        {
+            var allWeapons = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.IsWeapon).ToList();
+            foreach (var weapon in allWeapons)
             {
-                var allWeapons = DefDatabase<ThingDef>.AllDefsListForReading.Where(def => def.IsWeapon).ToList();
-                foreach(var weapon in allWeapons)
-                {
-                    saveWeaponOffsets(weapon);
-                }
-            } catch(Exception ex)
-            {
-                Log.Warning($"YayoCombatCore: error caching oversized offsets: {ex}");
+                saveWeaponOffsets(weapon);
             }
-        }        
+        }
+        catch (Exception ex)
+        {
+            Log.Warning($"YayoCombatCore: error caching oversized offsets: {ex}");
+        }
     }
 
     private static bool containCheckByList(string origin, List<string> ar)
     {
-        foreach(var value in ar)
+        foreach (var value in ar)
         {
-            if(origin.Contains(value))
+            if (origin.Contains(value))
             {
                 return true;
             }
@@ -125,9 +131,9 @@ public static class YayoCombatCore
 
     private static string getContainStringByList(string keyword, List<string> ar)
     {
-        foreach(var containStringByList in ar)
+        foreach (var containStringByList in ar)
         {
-            if(containStringByList.Contains(keyword))
+            if (containStringByList.Contains(keyword))
             {
                 return containStringByList;
             }
@@ -159,86 +165,107 @@ public static class YayoCombatCore
             {
                 YayoCombatMod.Instance.Settings.ammo = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "refillMechAmmo")
             {
                 YayoCombatMod.Instance.Settings.refillMechAmmo = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "ammoGen")
             {
                 YayoCombatMod.Instance.Settings.ammoGen = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "maxAmmo")
             {
                 YayoCombatMod.Instance.Settings.maxAmmo = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "enemyAmmo")
             {
                 YayoCombatMod.Instance.Settings.enemyAmmo = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "supplyAmmoDist")
             {
                 YayoCombatMod.Instance.Settings.supplyAmmoDist = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "meleeDelay")
             {
                 YayoCombatMod.Instance.Settings.meleeDelay = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "meleeRandom")
             {
                 YayoCombatMod.Instance.Settings.meleeRandom = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "handProtect")
             {
                 YayoCombatMod.Instance.Settings.handProtect = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "advArmor")
             {
                 YayoCombatMod.Instance.Settings.advArmor = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "armorEf")
             {
                 YayoCombatMod.Instance.Settings.armorEf = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "unprotectDmg")
             {
                 YayoCombatMod.Instance.Settings.unprotectDmg = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "advShootAcc")
             {
                 YayoCombatMod.Instance.Settings.advShootAcc = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "accEf")
             {
                 YayoCombatMod.Instance.Settings.accEf = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "missBulletHit")
             {
                 YayoCombatMod.Instance.Settings.missBulletHit = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "mechAcc")
             {
                 YayoCombatMod.Instance.Settings.mechAcc = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "turretAcc")
             {
                 YayoCombatMod.Instance.Settings.turretAcc = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "baseSkill")
             {
                 YayoCombatMod.Instance.Settings.baseSkill = int.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "colonistAcc")
             {
                 YayoCombatMod.Instance.Settings.colonistAcc = bool.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "bulletSpeed")
             {
                 YayoCombatMod.Instance.Settings.bulletSpeed = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "maxBulletSpeed")
             {
                 YayoCombatMod.Instance.Settings.maxBulletSpeed = float.Parse(modSetting.Value);
             }
+
             if (modSetting.Name == "enemyRocket")
             {
                 YayoCombatMod.Instance.Settings.enemyRocket = bool.Parse(modSetting.Value);
@@ -256,7 +283,7 @@ public static class YayoCombatCore
         try
         {
             var thingComp = weapon.comps.FirstOrDefault(y => y.GetType().ToString().Contains("CompOversizedWeapon"));
-            if(thingComp == null)
+            if (thingComp == null)
             {
                 return;
             }
@@ -264,9 +291,9 @@ public static class YayoCombatCore
             var oversizedType = thingComp.GetType();
             var fields = oversizedType.GetFields().Where(info => info.Name.Contains("Offset"));
 
-            foreach(var fieldInfo in fields)
+            foreach (var fieldInfo in fields)
             {
-                switch(fieldInfo.Name)
+                switch (fieldInfo.Name)
                 {
                     case "northOffset":
                         northOffsets[weapon] = fieldInfo.GetValue(thingComp) is Vector3 v1 ? v1 : Vector3.zero;
@@ -282,7 +309,8 @@ public static class YayoCombatCore
                         break;
                 }
             }
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             Log.Warning($"YayoCombatCore.saveWeaponOffsets error for {weapon?.defName}: {ex}");
         }
@@ -291,78 +319,77 @@ public static class YayoCombatCore
     // Public method to apply the def modifications that original patchDef2 did
     public static void ApplyDefPatches()
     {
-        if(patchApplied)
+        if (patchApplied)
         {
             return;
         }
+
         Log.Message("[YayoCombat] Applying Def patches.");
         patchApplied = true;
         try
         {
             // HAND PROTECT: modify apparel layer defs and body part groups
-            if(handProtect)
+            if (handProtect)
             {
-                foreach(var item in DefDatabase<ThingDef>.AllDefs
-                    .Where(
-                        thing => thing.apparel is { bodyPartGroups.Count: > 0 } &&
-                            (thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Hands) ||
-                                thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Feet)) &&
-                            !thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Torso) &&
-                            !thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.FullHead) &&
-                            !thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.UpperHead) &&
-                            !thing.apparel.bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Shoulders)))
+                foreach (var item in DefDatabase<ThingDef>.AllDefs
+                             .Where(thing => thing.apparel is { bodyPartGroups.Count: > 0 } &&
+                                             (thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Hands) ||
+                                              thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Feet)) &&
+                                             !thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Torso) &&
+                                             !thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.FullHead) &&
+                                             !thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.UpperHead) &&
+                                             !thing.apparel.bodyPartGroups.Contains(BodyPartGroupDefOf.Shoulders)))
                 {
                     var list = new List<ApparelLayerDef>();
-                    foreach(var apparelLayerDef in item.apparel.layers)
+                    foreach (var apparelLayerDef in item.apparel.layers)
                     {
-                        switch(apparelLayerDef.defName)
+                        switch (apparelLayerDef.defName)
                         {
                             case "OnSkin":
-                                list.Add(yayoCombat_Defs.ApparelLayerDefOf.OnSkin_A);
+                                list.Add(ApparelLayerDefOf.OnSkin_A);
                                 break;
                             case "Shell":
-                                list.Add(yayoCombat_Defs.ApparelLayerDefOf.Shell_A);
+                                list.Add(ApparelLayerDefOf.Shell_A);
                                 break;
                             case "Middle":
-                                list.Add(yayoCombat_Defs.ApparelLayerDefOf.Middle_A);
+                                list.Add(ApparelLayerDefOf.Middle_A);
                                 break;
                             case "Belt":
-                                list.Add(yayoCombat_Defs.ApparelLayerDefOf.Belt_A);
+                                list.Add(ApparelLayerDefOf.Belt_A);
                                 break;
                             case "Overhead":
-                                list.Add(yayoCombat_Defs.ApparelLayerDefOf.Overhead_A);
+                                list.Add(ApparelLayerDefOf.Overhead_A);
                                 break;
                         }
                     }
 
-                    if(list.Count > 0)
+                    if (list.Count > 0)
                     {
                         item.apparel.layers = list;
                     }
                 }
 
-                foreach(var item2 in DefDatabase<ThingDef>.AllDefs
-                    .Where(
-                        thing => thing.apparel is
-                    { bodyPartGroups.Count: > 0 }))
+                foreach (var item2 in DefDatabase<ThingDef>.AllDefs
+                             .Where(thing => thing.apparel is
+                                 { bodyPartGroups.Count: > 0 }))
                 {
                     var bodyPartGroups = item2.apparel.bodyPartGroups;
-                    if(bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Arms) &&
-                        !bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Hands))
+                    if (bodyPartGroups.Contains(BodyPartGroupDefOf.Arms) &&
+                        !bodyPartGroups.Contains(BodyPartGroupDefOf.Hands))
                     {
-                        bodyPartGroups.Add(yayoCombat_Defs.BodyPartGroupDefOf.Hands);
+                        bodyPartGroups.Add(BodyPartGroupDefOf.Hands);
                     }
 
-                    if(bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Legs) &&
-                        !bodyPartGroups.Contains(yayoCombat_Defs.BodyPartGroupDefOf.Feet))
+                    if (bodyPartGroups.Contains(BodyPartGroupDefOf.Legs) &&
+                        !bodyPartGroups.Contains(BodyPartGroupDefOf.Feet))
                     {
-                        bodyPartGroups.Add(yayoCombat_Defs.BodyPartGroupDefOf.Feet);
+                        bodyPartGroups.Add(BodyPartGroupDefOf.Feet);
                     }
                 }
             }
 
             // AMMO: add reloadable comp to ranged weapons, adjust recipes
-            if(ammo)
+            if (ammo)
             {
                 var ar = new List<string>
                 {
@@ -391,15 +418,14 @@ public static class YayoCombatCore
                 };
                 var ar2 = new List<string> { "Ice" };
 
-                foreach(var item3 in DefDatabase<ThingDef>.AllDefs
-                    .Where(
-                        t => t.IsRangedWeapon &&
-                            t.Verbs is { Count: >= 1 } &&
-                            (t.modExtensions == null ||
-                                !t.modExtensions.Exists(x => x.ToString() == "HeavyWeapons.HeavyWeapon"))))
+                foreach (var item3 in DefDatabase<ThingDef>.AllDefs
+                             .Where(t => t.IsRangedWeapon &&
+                                         t.Verbs is { Count: >= 1 } &&
+                                         (t.modExtensions == null ||
+                                          !t.modExtensions.Exists(x => x.ToString() == "HeavyWeapons.HeavyWeapon"))))
                 {
                     // skip very low tech weapons
-                    if((int)item3.techLevel <= 1)
+                    if ((int)item3.techLevel <= 1)
                     {
                         continue;
                     }
@@ -408,21 +434,21 @@ public static class YayoCombatCore
                     var verbProperties = item3.Verbs[0];
 
                     // skip one-use shoot verbs, fuel-consumption or turret/artillery tags
-                    if(verbProperties.verbClass == null ||
+                    if (verbProperties.verbClass == null ||
                         verbProperties.verbClass == typeof(Verb_ShootOneUse) ||
                         verbProperties.verbClass == typeof(Verb_LaunchProjectileStaticOneUse) ||
                         verbProperties.consumeFuelPerShot > 0f ||
-                        (item3.weaponTags != null &&
-                            (item3.weaponTags.Contains("TurretGun") || item3.weaponTags.Contains("Artillery"))))
+                        item3.weaponTags != null &&
+                        (item3.weaponTags.Contains("TurretGun") || item3.weaponTags.Contains("Artillery")))
                     {
                         continue;
                     }
 
                     var compProperties_Reloadable = new CompProperties_ApparelReloadable();
                     var num = verbProperties.burstShotCount /
-                        ((verbProperties.ticksBetweenBurstShots * 0.016666f * verbProperties.burstShotCount) +
-                            verbProperties.warmupTime +
-                            item3.statBases.GetStatValueFromList(StatDefOf.RangedWeapon_Cooldown, 0f));
+                              ((verbProperties.ticksBetweenBurstShots * 0.016666f * verbProperties.burstShotCount) +
+                               verbProperties.warmupTime +
+                               item3.statBases.GetStatValueFromList(StatDefOf.RangedWeapon_Cooldown, 0f));
                     var num2 = 90f;
                     compProperties_Reloadable.maxCharges = Mathf.Max(3, Mathf.RoundToInt(num2 * num * maxAmmo));
                     compProperties_Reloadable.ammoCountPerCharge = 1;
@@ -432,81 +458,85 @@ public static class YayoCombatCore
                     compProperties_Reloadable.chargeNoun = "ammo";
                     compProperties_Reloadable.displayGizmoWhileUndrafted = true;
 
-                    if(verbProperties.defaultProjectile is { projectile.damageDef: not null })
+                    if (verbProperties.defaultProjectile is { projectile.damageDef: not null })
                     {
                         var projectile = verbProperties.defaultProjectile.projectile;
-                        if(item3.weaponTags != null)
+                        if (item3.weaponTags != null)
                         {
-                            if(item3.weaponTags.Contains("ammo_none"))
+                            if (item3.weaponTags.Contains("ammo_none"))
                             {
                                 continue;
                             }
 
                             var containStringByList = getContainStringByList("ammo_", item3.weaponTags);
-                            if(containStringByList != string.Empty)
+                            if (containStringByList != string.Empty)
                             {
                                 var array = containStringByList.Split('/');
                                 text = $"yy_{array[0]}";
-                                if(ThingDef.Named(text) == null)
+                                if (ThingDef.Named(text) == null)
                                 {
                                     text = string.Empty;
                                 }
 
-                                if(array.Length >= 2 && int.TryParse(array[1], out var result))
+                                if (array.Length >= 2 && int.TryParse(array[1], out var result))
                                 {
                                     compProperties_Reloadable.maxCharges = Mathf.Max(
                                         1,
                                         Mathf.RoundToInt(result * maxAmmo));
                                 }
 
-                                if(array.Length >= 3 && int.TryParse(array[2], out var result2))
+                                if (array.Length >= 3 && int.TryParse(array[2], out var result2))
                                 {
                                     compProperties_Reloadable.ammoCountPerCharge = Mathf.Max(1, result2);
                                 }
                             }
                         }
 
-                        if(text == string.Empty)
+                        if (text == string.Empty)
                         {
                             text = "yy_ammo_";
                             en_ammoType ammoType;
-                            if(new List<DamageDef> { DamageDefOf.Bomb, DamageDefOf.Flame, DamageDefOf.Burn }.Contains(
-                                projectile.damageDef))
+                            if (new List<DamageDef> { DamageDefOf.Bomb, DamageDefOf.Flame, DamageDefOf.Burn }.Contains(
+                                    projectile.damageDef))
                             {
                                 ammoType = en_ammoType.fire;
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
-                            } else if(new List<DamageDef> { DamageDefOf.Smoke }.Contains(projectile.damageDef))
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
+                            }
+                            else if (new List<DamageDef> { DamageDefOf.Smoke }.Contains(projectile.damageDef))
                             {
                                 ammoType = en_ammoType.fire;
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius / 3f));
-                            } else if(new List<DamageDef>
-                                   {
-                                       DamageDefOf.EMP,
-                                       DamageDefOf.Deterioration,
-                                       DamageDefOf.Extinguish,
-                                       DamageDefOf.Frostbite,
-                                       DamageDefOf.Rotting,
-                                       DamageDefOf.Stun,
-                                       DamageDefOf.TornadoScratch
-                                   }.Contains(projectile.damageDef))
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius / 3f));
+                            }
+                            else if (new List<DamageDef>
+                                     {
+                                         DamageDefOf.EMP,
+                                         DamageDefOf.Deterioration,
+                                         DamageDefOf.Extinguish,
+                                         DamageDefOf.Frostbite,
+                                         DamageDefOf.Rotting,
+                                         DamageDefOf.Stun,
+                                         DamageDefOf.TornadoScratch
+                                     }.Contains(projectile.damageDef))
                             {
                                 ammoType = en_ammoType.emp;
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius / 3f));
-                            } else if(containCheckByList(item3.defName.ToLower(), ar) ||
-                                containCheckByList(item3.defName, ar2) ||
-                                containCheckByList(projectile.damageDef.defName.ToLower(), ar) ||
-                                containCheckByList(projectile.damageDef.defName, ar2))
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius / 3f));
+                            }
+                            else if (containCheckByList(item3.defName.ToLower(), ar) ||
+                                     containCheckByList(item3.defName, ar2) ||
+                                     containCheckByList(projectile.damageDef.defName.ToLower(), ar) ||
+                                     containCheckByList(projectile.damageDef.defName, ar2))
                             {
                                 ammoType = en_ammoType.emp;
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
-                            } else if(projectile.explosionRadius > 0f)
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
+                            }
+                            else if (projectile.explosionRadius > 0f)
                             {
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
                                 ammoType = projectile.damageDef.armorCategory == null
                                     ? en_ammoType.emp
                                     : projectile.damageDef.armorCategory.defName switch
@@ -516,7 +546,8 @@ public static class YayoCombatCore
                                         "Blunt" => en_ammoType.fire,
                                         _ => en_ammoType.emp
                                     };
-                            } else if(projectile.damageDef.armorCategory != null)
+                            }
+                            else if (projectile.damageDef.armorCategory != null)
                             {
                                 ammoType = projectile.damageDef.armorCategory.defName switch
                                 {
@@ -525,17 +556,20 @@ public static class YayoCombatCore
                                     "Blunt" => en_ammoType.normal,
                                     _ => en_ammoType.emp
                                 };
-                            } else
+                            }
+                            else
                             {
                                 ammoType = en_ammoType.emp;
                                 compProperties_Reloadable.ammoCountPerCharge =
-                                        Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
+                                    Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
                             }
 
                             text = (int)item3.techLevel >= 5
                                 ? $"{text}spacer"
-                                : (int)item3.techLevel < 4 ? $"{text}primitive" : $"{text}industrial";
-                            switch(ammoType)
+                                : (int)item3.techLevel < 4
+                                    ? $"{text}primitive"
+                                    : $"{text}industrial";
+                            switch (ammoType)
                             {
                                 case en_ammoType.fire:
                                     text += "_fire";
@@ -550,28 +584,28 @@ public static class YayoCombatCore
                     }
 
                     // allow specific ammo override via weapon tags
-                    if(item3.weaponTags != null)
+                    if (item3.weaponTags != null)
                     {
                         var containStringByList2 = getContainStringByList("ammoDef_", item3.weaponTags);
-                        if(containStringByList2 != string.Empty)
+                        if (containStringByList2 != string.Empty)
                         {
                             var array2 = containStringByList2.Split('/');
                             var array3 = array2[0].Split('_');
-                            if(array3.Length >= 2)
+                            if (array3.Length >= 2)
                             {
                                 compProperties_Reloadable.ammoDef = ThingDef.Named(array3[1]);
-                                if(compProperties_Reloadable.ammoDef != null)
+                                if (compProperties_Reloadable.ammoDef != null)
                                 {
                                     ar_customAmmoDef.Add(compProperties_Reloadable.ammoDef);
                                 }
 
-                                if(array2.Length >= 2 && int.TryParse(array2[1], out var result3))
+                                if (array2.Length >= 2 && int.TryParse(array2[1], out var result3))
                                 {
                                     compProperties_Reloadable.maxCharges =
-                                            Mathf.Max(1, Mathf.RoundToInt(result3 * maxAmmo));
+                                        Mathf.Max(1, Mathf.RoundToInt(result3 * maxAmmo));
                                 }
 
-                                if(array2.Length >= 3 && int.TryParse(array2[2], out var result4))
+                                if (array2.Length >= 3 && int.TryParse(array2[2], out var result4))
                                 {
                                     compProperties_Reloadable.ammoCountPerCharge = Mathf.Max(1, result4);
                                 }
@@ -580,9 +614,9 @@ public static class YayoCombatCore
                     }
 
                     // fallback ammo defs by tech level
-                    if(compProperties_Reloadable.ammoDef == null)
+                    if (compProperties_Reloadable.ammoDef == null)
                     {
-                        switch((int)item3.techLevel)
+                        switch ((int)item3.techLevel)
                         {
                             case >= 5:
                                 compProperties_Reloadable.ammoDef = ThingDef.Named("yy_ammo_spacer");
@@ -600,21 +634,28 @@ public static class YayoCombatCore
                 }
 
                 // scale recipes that produce yy_ammo
-                foreach(var item4 in DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
+                foreach (var item4 in DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
                 {
-                    if(item4.products is { Count: > 0 })
+                    if (item4.products is { Count: > 0 })
                     {
                         item4.products[0].count = Mathf.RoundToInt(item4.products[0].count * ammoGen);
                     }
                 }
-            } else // ammo disabled -> remove yy_ammo usage from recipe users and disable trade
+            }
+            else // ammo disabled -> remove yy_ammo recipes entirely
             {
-                foreach(var item5 in DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
+                // Clear recipeUsers from all ammo recipes
+                var recipesToRemove = DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")).ToList();
+                Log.Message($"[YayoCombat] Removing ammo recipes. Found {recipesToRemove.Count} ammo recipes.");
+                
+                // Clear recipeUsers to prevent discovery through normal means
+                foreach (var recipe in recipesToRemove)
                 {
-                    item5.recipeUsers = new List<ThingDef>();
+                    recipe.recipeUsers = [];
                 }
-
-                foreach(var item6 in DefDatabase<ThingDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
+                
+                // Disable ammo items from being traded
+                foreach (var item6 in DefDatabase<ThingDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
                 {
                     item6.tradeability = Tradeability.None;
                     item6.tradeTags = null;
@@ -622,10 +663,10 @@ public static class YayoCombatCore
             }
 
             // ADV ARMOR: buff mech pawn kinds
-            if(advArmor)
+            if (advArmor)
             {
-                foreach(var item7 in DefDatabase<PawnKindDef>.AllDefs
-                    .Where(pawn => pawn.defaultFactionDef == FactionDefOf.Mechanoid))
+                foreach (var item7 in DefDatabase<PawnKindDef>.AllDefs
+                             .Where(pawn => pawn.defaultFactionDef == FactionDefOf.Mechanoid))
                 {
                     item7.race
                         .SetStatBaseValue(
@@ -637,11 +678,12 @@ public static class YayoCombatCore
 
             // enemy rockets toggle
             var thingDef = ThingDef.Named("Gun_AntiArmor_Rocket");
-            if(!enemyRocket)
+            if (!enemyRocket)
             {
-                thingDef.weaponTags = new List<string>();
+                thingDef.weaponTags = [];
             }
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             Log.Warning($"YayoCombatCore.ApplyDefPatches exception: {ex}");
         }
@@ -650,7 +692,7 @@ public static class YayoCombatCore
 
     public static void ApplySettingsFrom(YayoCombatSettings s)
     {
-        if(s == null)
+        if (s == null)
         {
             return;
         }
@@ -690,12 +732,12 @@ public static class YayoCombatCore
     // Public accessor for oversized offsets (keeps previous API)
     public static Vector3 GetOversizedOffset(Pawn pawn, ThingWithComps weapon)
     {
-        if(!using_Oversized || pawn == null || weapon == null)
+        if (!using_Oversized || pawn == null || weapon == null)
         {
             return Vector3.zero;
         }
 
-        switch(pawn.Rotation.AsInt)
+        switch (pawn.Rotation.AsInt)
         {
             case 0:
                 return northOffsets.TryGetValue(weapon.def, out var northValue) ? northValue : Vector3.zero;

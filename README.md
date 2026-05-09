@@ -171,4 +171,4 @@ Any mods are allowed to be uploaded fresh, and if someone wants to, I'm fine wit
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/YayosCombat3?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2854006492) | tags:  ammo, combat,  armor
+[![Image](https://img.shields.io/github/v/release/emipa606/YayosCombat3?label=latest%20version&style=plastic&color=9f1111&labelColor=black)](https://steamcommunity.com/sharedfiles/filedetails/changelog/2854006492) | tags: combat, armor, ammo

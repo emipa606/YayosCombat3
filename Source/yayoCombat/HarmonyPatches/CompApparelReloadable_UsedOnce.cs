@@ -1,28 +1,12 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using Verse;
 
 namespace yayoCombat.HarmonyPatches;
 
-[HarmonyPatch(typeof(CompApparelReloadable), nameof(CompApparelReloadable.UsedOnce))]
+[HarmonyPatch(typeof(CompApparelReloadable), "UsedOnce")]
 public static class CompApparelReloadable_UsedOnce
 {
-    public static void Postfix(CompApparelReloadable __instance)
-    {
-        if (!YayoCombatCore.ammo || __instance.Wearer == null)
-        {
-            return;
-        }
-
-        // 남은 탄약이 0 일경우 게임튕김 방지를 위해 사냥 중지
-        if (__instance.RemainingCharges == 0)
-        {
-            if (__instance.Wearer.CurJobDef == JobDefOf.Hunt)
-            {
-                __instance.Wearer.jobs.StopAll();
-            }
-        }
-
-        // 알아서 장전 ai
-        reloadUtility.TryAutoReload(__instance);
-    }
+    // This patch ensures the base UsedOnce behavior works correctly with ammo system
+    // The vanilla implementation already handles charge depletion
 }

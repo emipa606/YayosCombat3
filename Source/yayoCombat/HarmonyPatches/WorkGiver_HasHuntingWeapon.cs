@@ -9,13 +9,13 @@ public static class WorkGiver_HasHuntingWeapon
 {
     public static bool Postfix(bool __result, Pawn p)
     {
-        if(!YayoCombatCore.ammo || !__result)
+        if (!YayoCombatCore.ammo || !__result)
         {
             return __result;
         }
 
         var comp = p.equipment.Primary.GetComp<CompApparelReloadable>();
-        if(comp != null)
+        if (comp != null)
         {
             __result = comp.CanBeUsed(out _);
         }
