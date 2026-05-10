@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.9 - Hunters should not cause game crash when running out of ammo
+
+
 1.6.8 - Fixed single use weapons aiming. No ammo crafting when ammo disabled.
 
 
