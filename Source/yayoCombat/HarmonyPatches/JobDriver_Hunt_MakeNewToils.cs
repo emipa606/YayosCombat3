@@ -30,7 +30,7 @@ public static class JobDriver_Hunt_MakeNewToils
             return false;
         }
 
-        var primary = pawn.equipment?.Primary;
+        var primary = pawn?.equipment?.Primary;
         if (primary == null || !primary.def.IsRangedWeapon)
         {
             return false;

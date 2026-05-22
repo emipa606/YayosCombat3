@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.11 - Fixed Advanced Accuracy Algorithm
+
+
 1.6.10 - Militors should work better now
 
 

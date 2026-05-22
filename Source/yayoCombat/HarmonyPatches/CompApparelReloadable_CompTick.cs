@@ -16,15 +16,17 @@ public static class CompApparelReloadable_CompTick
 
         // Prevent automatic replenishment for items without ammunition (like deadlife packs)
         // This fixes the infinite charge bug where non-ammo items would replenish instantly
-        if (!hasAmmo && shouldReplenish && timerAt <= 0)
+        if (hasAmmo || !shouldReplenish || timerAt > 0)
         {
-            Log.Message(
-                $"[YayoCombat] BLOCKING replenishment for {itemName}: AmmoDef=NULL, replenishAfterCooldown={shouldReplenish}, timer={timerAt}. Charges before: {__instance.RemainingCharges}"
-            );
-            // Disable replenishment by setting replenishInTicks to a large number
-            // This prevents the charges from being reset to max
-            ___replenishInTicks = int.MaxValue;
-            Log.Message($"[YayoCombat] Set timer to MaxValue for {itemName}");
+            return;
         }
+
+        Log.Message(
+            $"[YayoCombat] BLOCKING replenishment for {itemName}: AmmoDef=NULL, replenishAfterCooldown={true}, timer={timerAt}. Charges before: {__instance.RemainingCharges}"
+        );
+        // Disable replenishment by setting replenishInTicks to a large number
+        // This prevents the charges from being reset to max
+        ___replenishInTicks = int.MaxValue;
+        Log.Message($"[YayoCombat] Set timer to MaxValue for {itemName}");
     }
 }

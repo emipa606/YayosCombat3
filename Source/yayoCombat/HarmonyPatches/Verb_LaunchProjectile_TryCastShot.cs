@@ -8,6 +8,31 @@ namespace yayoCombat.HarmonyPatches;
 [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
 public static class Verb_LaunchProjectile_TryCastShot
 {
+    private static bool UseAdvancedAccuracyForShooter(Thing caster, bool casterIsPawn, Pawn casterPawn)
+    {
+        if (!YayoCombatCore.advShootAcc)
+        {
+            return false;
+        }
+
+        if (!casterIsPawn)
+        {
+            return YayoCombatCore.turretAcc;
+        }
+
+        if (!YayoCombatCore.mechAcc && casterPawn.RaceProps.IsMechanoid)
+        {
+            return false;
+        }
+
+        if (YayoCombatCore.colonistAcc && !casterPawn.IsColonist)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public static bool Prefix(
         ref bool __result,
         Verb_LaunchProjectile __instance,
@@ -16,13 +41,7 @@ public static class Verb_LaunchProjectile_TryCastShot
         bool ___preventFriendlyFire)
     {
         var localTargetInfo = ___currentTarget;
-        if (!YayoCombatCore.advShootAcc ||
-            !YayoCombatCore.turretAcc &&
-            !__instance.CasterIsPawn ||
-            !YayoCombatCore.mechAcc &&
-            (!__instance.CasterIsPawn || __instance.CasterPawn.RaceProps.IsMechanoid) ||
-            YayoCombatCore.colonistAcc &&
-            (!__instance.CasterIsPawn || !__instance.CasterPawn.IsColonist))
+        if (!UseAdvancedAccuracyForShooter(__instance.Caster, __instance.CasterIsPawn, __instance.CasterPawn))
         {
             return true;
         }
@@ -41,7 +60,8 @@ public static class Verb_LaunchProjectile_TryCastShot
         }
 
         var resultingLine = new ShootLine();
-        var los_Successful = __instance.TryFindShootLineFromTo(__instance.caster.Position, localTargetInfo, out resultingLine);
+        var los_Successful =
+            __instance.TryFindShootLineFromTo(__instance.caster.Position, localTargetInfo, out resultingLine);
         if (__instance.verbProps.stopBurstWithoutLos && !los_Successful)
         {
             __result = false;
@@ -125,60 +145,9 @@ public static class Verb_LaunchProjectile_TryCastShot
         var shotReport = ShotReport.HitReportFor(__instance.caster, __instance, localTargetInfo);
         var randomCoverToMissInto = shotReport.GetRandomCoverToMissInto();
         var targetCoverDef = randomCoverToMissInto?.def;
-        var missRadius = 1f - (shotReport.AimOnTargetChance_IgnoringPosture * 0.5f);
-        if (missRadius < 0f)
-        {
-            missRadius = 0f;
-        }
 
-        var factorStat = 0.95f;
-        float factorSkill;
-        if (__instance.CasterIsPawn)
-        {
-            factorSkill = __instance.CasterPawn.skills == null
-                ? YayoCombatCore.baseSkill / 20f
-                : __instance.CasterPawn.skills.GetSkill(SkillDefOf.Shooting).levelInt / 20f;
-            factorStat = 1f - (__instance.caster.GetStatValue(StatDefOf.ShootingAccuracyPawn) * factorSkill);
-        }
-        else
-        {
-            // turret
-            var stat = __instance.Caster.GetStatValue(StatDefOf.ShootingAccuracyTurret);
-            if (stat != StatDefOf.ShootingAccuracyTurret.defaultBaseValue)
-                // it's the same stat in vanilla: the chance to miss per cell.
-            {
-                factorSkill = StatDefOf.ShootingAccuracyPawn.postProcessCurve.EvaluateInverted(stat) / 20f;
-            }
-            else
-            {
-                factorSkill = YayoCombatCore.baseSkill / 20f;
-            }
-
-            factorStat = 1f - (factorStat * factorSkill);
-        }
-
-        var lengthHorizontal = (localTargetInfo.Cell - __instance.caster.Position).LengthHorizontal;
-        _ = 1f - __instance.verbProps.GetHitChanceFactor(__instance.EquipmentSource, lengthHorizontal);
-        var factorGas = 1f;
-        var factorWeather = __instance.caster.Position.Roofed(__instance.caster.Map) &&
-                            localTargetInfo.Cell.Roofed(__instance.caster.Map)
-            ? 1f
-            : __instance.caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
-        var factorAir = factorGas * factorWeather;
-        if (__instance.EquipmentSource != null && __instance.EquipmentSource.def.equipmentType != EquipmentType.None)
-        {
-            missRadius *= (((YayoCombatCore.s_accEf * factorStat) + (1f - YayoCombatCore.s_accEf)) * factorAir) +
-                          (1f - factorAir);
-        }
-
-        if (lengthHorizontal < 10f)
-        {
-            missRadius -= Mathf.Clamp((10f - lengthHorizontal) * 0.07f, 0f, 0.3f);
-        }
-
-        missRadius = (missRadius * 0.95f) + 0.05f;
-        missRadius = Mathf.Clamp(missRadius, 0.05f, 0.95f);
-        if (Rand.Chance(missRadius))
+        var hitChance = Mathf.Clamp(shotReport.AimOnTargetChance_IgnoringPosture, 0.0201f, 0.99f);
+        if (!Rand.Chance(hitChance))
         {
             resultingLine.ChangeDestToMissWild(
                 shotReport.AimOnTargetChance_StandardTarget,

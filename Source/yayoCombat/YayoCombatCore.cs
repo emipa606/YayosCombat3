@@ -565,7 +565,8 @@ public static class YayoCombatCore
                             }
 
                             var useIndustrialAmmoForMechShortRange = item3.weaponTags != null &&
-                                                                   item3.weaponTags.Contains("MechanoidGunShortRange");
+                                                                     item3.weaponTags.Contains(
+                                                                         "MechanoidGunShortRange");
                             text = useIndustrialAmmoForMechShortRange
                                 ? $"{text}industrial"
                                 : (int)item3.techLevel >= 5
@@ -649,15 +650,16 @@ public static class YayoCombatCore
             else // ammo disabled -> remove yy_ammo recipes entirely
             {
                 // Clear recipeUsers from all ammo recipes
-                var recipesToRemove = DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")).ToList();
+                var recipesToRemove = DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo"))
+                    .ToList();
                 Log.Message($"[YayoCombat] Removing ammo recipes. Found {recipesToRemove.Count} ammo recipes.");
-                
+
                 // Clear recipeUsers to prevent discovery through normal means
                 foreach (var recipe in recipesToRemove)
                 {
                     recipe.recipeUsers = [];
                 }
-                
+
                 // Disable ammo items from being traded
                 foreach (var item6 in DefDatabase<ThingDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
                 {
