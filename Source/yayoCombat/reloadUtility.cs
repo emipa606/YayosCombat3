@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -87,8 +88,18 @@ internal class reloadUtility
         }
 
         var p = cp.Wearer;
-        if (p?.inventory?.innerContainer == null || p.Dead)
+        if (p == null || p.Dead)
         {
+            return;
+        }
+
+        if (p.inventory?.innerContainer == null)
+        {
+            if (!p.RaceProps.Humanlike && YayoCombatCore.refillMechAmmo)
+            {
+                Traverse.Create(cp).Field("remainingCharges").SetValue(cp.MaxCharges);
+            }
+
             return;
         }
 

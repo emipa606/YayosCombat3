@@ -564,11 +564,15 @@ public static class YayoCombatCore
                                     Mathf.Max(1, Mathf.RoundToInt(projectile.explosionRadius));
                             }
 
-                            text = (int)item3.techLevel >= 5
-                                ? $"{text}spacer"
-                                : (int)item3.techLevel < 4
-                                    ? $"{text}primitive"
-                                    : $"{text}industrial";
+                            var useIndustrialAmmoForMechShortRange = item3.weaponTags != null &&
+                                                                   item3.weaponTags.Contains("MechanoidGunShortRange");
+                            text = useIndustrialAmmoForMechShortRange
+                                ? $"{text}industrial"
+                                : (int)item3.techLevel >= 5
+                                    ? $"{text}spacer"
+                                    : (int)item3.techLevel < 4
+                                        ? $"{text}primitive"
+                                        : $"{text}industrial";
                             switch (ammoType)
                             {
                                 case en_ammoType.fire:

@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.10 - Militors should work better now
+
+
 1.6.9 - Hunters should not cause game crash when running out of ammo
 
 
