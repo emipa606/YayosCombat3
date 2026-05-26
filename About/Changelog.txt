@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.12 - Fixed melee power and speed settings
+
+
 1.6.11 - Fixed Advanced Accuracy Algorithm
 
 

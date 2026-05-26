@@ -25,12 +25,7 @@ public static class Verb_LaunchProjectile_TryCastShot
             return false;
         }
 
-        if (YayoCombatCore.colonistAcc && !casterPawn.IsColonist)
-        {
-            return false;
-        }
-
-        return true;
+        return !YayoCombatCore.colonistAcc || casterPawn.IsColonist;
     }
 
     public static bool Prefix(
@@ -59,9 +54,8 @@ public static class Verb_LaunchProjectile_TryCastShot
             return false;
         }
 
-        var resultingLine = new ShootLine();
         var los_Successful =
-            __instance.TryFindShootLineFromTo(__instance.caster.Position, localTargetInfo, out resultingLine);
+            __instance.TryFindShootLineFromTo(__instance.caster.Position, localTargetInfo, out var resultingLine);
         if (__instance.verbProps.stopBurstWithoutLos && !los_Successful)
         {
             __result = false;

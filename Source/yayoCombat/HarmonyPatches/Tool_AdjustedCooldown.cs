@@ -10,7 +10,7 @@ public static class Tool_AdjustedCooldown
     [HarmonyPriority(0)]
     public static void Postfix(ref float __result, Thing ownerEquipment)
     {
-        if (YayoCombatCore.meleeRandom > 0)
+        if (YayoCombatCore.meleeDelay == 1f && YayoCombatCore.meleeRandom <= 0f)
         {
             return;
         }
@@ -25,17 +25,13 @@ public static class Tool_AdjustedCooldown
             return;
         }
 
-        if (ownerEquipment.ParentHolder is not { ParentHolder: Pawn })
-        {
-            return;
-        }
-
         if (ownerEquipment.def is not { IsMeleeWeapon: true })
         {
             return;
         }
 
-        var num = YayoCombatCore.meleeDelay * (1f + ((Rand.Value - 0.5f) * YayoCombatCore.meleeRandom));
-        __result = Mathf.Max(__result * num, 0.2f);
+        var randomFactor = 1f + ((Rand.Value - 0.5f) * YayoCombatCore.meleeRandom);
+        var multiplier = Mathf.Max(0.01f, YayoCombatCore.meleeDelay * randomFactor);
+        __result = Mathf.Max(__result * multiplier, 0.2f);
     }
 }
