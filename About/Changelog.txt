@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.6.13 - SIngle use ammo apparel will be correctly destroyed
+
+
 1.6.12 - Fixed melee power and speed settings
 
 

@@ -65,7 +65,7 @@ public static class Verb_LaunchProjectile_TryCastShot
         if (__instance.EquipmentSource != null)
         {
             __instance.EquipmentSource.GetComp<CompChangeableProjectile>()?.Notify_ProjectileLaunched();
-            __instance.EquipmentSource.GetComp<CompApparelReloadable>()?.UsedOnce();
+            __instance.EquipmentSource.GetComp<CompApparelVerbOwner_Charged>()?.UsedOnce();
         }
 
         var launcher = __instance.caster;
