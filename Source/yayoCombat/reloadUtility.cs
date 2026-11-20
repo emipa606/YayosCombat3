@@ -11,7 +11,7 @@ using JobDefOf = yayoCombat_Defs.JobDefOf;
 
 namespace yayoCombat;
 
-internal class reloadUtility
+internal static class reloadUtility
 {
     internal static void EjectAmmo(Pawn pawn, ThingWithComps t)
     {

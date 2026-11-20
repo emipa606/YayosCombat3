@@ -8,7 +8,7 @@ namespace yayoCombat.HarmonyPatches;
 [HarmonyPatch(typeof(Verb_LaunchProjectile), "TryCastShot")]
 public static class Verb_LaunchProjectile_TryCastShot
 {
-    private static bool UseAdvancedAccuracyForShooter(Thing caster, bool casterIsPawn, Pawn casterPawn)
+    private static bool UseAdvancedAccuracyForShooter(bool casterIsPawn, Pawn casterPawn)
     {
         if (!YayoCombatCore.advShootAcc)
         {
@@ -36,7 +36,7 @@ public static class Verb_LaunchProjectile_TryCastShot
         bool ___preventFriendlyFire)
     {
         var localTargetInfo = ___currentTarget;
-        if (!UseAdvancedAccuracyForShooter(__instance.Caster, __instance.CasterIsPawn, __instance.CasterPawn))
+        if (!UseAdvancedAccuracyForShooter(__instance.CasterIsPawn, __instance.CasterPawn))
         {
             return true;
         }
@@ -195,7 +195,8 @@ public static class Verb_LaunchProjectile_TryCastShot
             intendedTarget |= ProjectileHitFlags.NonTargetPawns;
         }
 
-        if (!localTargetInfo.HasThing || localTargetInfo.Thing.def.Fillage == FillCategory.Full)
+        if (localTargetInfo.Thing != null &&
+            (!localTargetInfo.HasThing || localTargetInfo.Thing.def.Fillage == FillCategory.Full))
         {
             intendedTarget |= ProjectileHitFlags.NonTargetWorld;
         }

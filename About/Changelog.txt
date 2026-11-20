@@ -1,5 +1,8 @@
 # Changelog for YayosCombat3
 
+1.7.0 - Mod updated for 1.7 and passed autotests
+
+
 1.6.13 - SIngle use ammo apparel will be correctly destroyed
 
 

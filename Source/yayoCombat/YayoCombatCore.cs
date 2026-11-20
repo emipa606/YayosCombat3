@@ -118,28 +118,12 @@ public static class YayoCombatCore
 
     private static bool containCheckByList(string origin, List<string> ar)
     {
-        foreach (var value in ar)
-        {
-            if (origin.Contains(value))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return ar.Any(origin.Contains);
     }
 
     private static string getContainStringByList(string keyword, List<string> ar)
     {
-        foreach (var containStringByList in ar)
-        {
-            if (containStringByList.Contains(keyword))
-            {
-                return containStringByList;
-            }
-        }
-
-        return string.Empty;
+        return ar.FirstOrDefault(s => s.Contains(keyword)) ?? string.Empty;
     }
 
     public static void ImportOldHugsLibSettings()
@@ -272,7 +256,7 @@ public static class YayoCombatCore
             }
         }
 
-        xml.Root.Element(modNodeName)?.Remove();
+        xml.Root?.Element(modNodeName)?.Remove();
         xml.Save(hugsLibConfig);
 
         Log.Message("[YayoCombat3]: Imported old HugLib-settings");
@@ -567,13 +551,24 @@ public static class YayoCombatCore
                             var useIndustrialAmmoForMechShortRange = item3.weaponTags != null &&
                                                                      item3.weaponTags.Contains(
                                                                          "MechanoidGunShortRange");
-                            text = useIndustrialAmmoForMechShortRange
-                                ? $"{text}industrial"
-                                : (int)item3.techLevel >= 5
-                                    ? $"{text}spacer"
-                                    : (int)item3.techLevel < 4
+                            if (useIndustrialAmmoForMechShortRange)
+                            {
+                                text = $"{text}industrial";
+                            }
+                            else
+                            {
+                                if ((int)item3.techLevel >= 5)
+                                {
+                                    text = $"{text}spacer";
+                                }
+                                else
+                                {
+                                    text = (int)item3.techLevel < 4
                                         ? $"{text}primitive"
                                         : $"{text}industrial";
+                                }
+                            }
+
                             switch (ammoType)
                             {
                                 case en_ammoType.fire:
@@ -639,12 +634,10 @@ public static class YayoCombatCore
                 }
 
                 // scale recipes that produce yy_ammo
-                foreach (var item4 in DefDatabase<RecipeDef>.AllDefs.Where(thing => thing.defName.Contains("yy_ammo")))
+                foreach (var item4 in DefDatabase<RecipeDef>.AllDefs.Where(thing =>
+                             thing.defName.Contains("yy_ammo") && thing.products is { Count: > 0 }))
                 {
-                    if (item4.products is { Count: > 0 })
-                    {
-                        item4.products[0].count = Mathf.RoundToInt(item4.products[0].count * ammoGen);
-                    }
+                    item4.products[0].count = Mathf.RoundToInt(item4.products[0].count * ammoGen);
                 }
             }
             else // ammo disabled -> remove yy_ammo recipes entirely

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="color-scheme" content="light dark">
+<title>Yayo&#39;s Combat 3 (Continued) analysis</title>
+</head>
+<body>
+<h1>Yayo&#39;s Combat 3 (Continued) analysis</h1>
+<h1 id="recommended-improvements">Recommended Improvements</h1>
+<h2 id="highest-priority">Highest Priority</h2>
+<h3 id="issue-1-enemy-pawns-with-ammo-in-their-inventory-go-hand-to-hand-instead-of-reloading-their-weapons.trello-card">Issue 1: Enemy pawns with ammo in their inventory go hand-to-hand instead of reloading their weapons. (<a href="https://trello.com/c/4rAXYW0O">Trello Card</a>)</h3>
+<p><strong>Priority:</strong> Highest
+<strong>Implementation Idea:</strong> Investigate the Harmony patch in <code>CompApparelReloadable_PostExposeData.cs</code> and <code>CompApparelVerbOwner_Charged_PostPostMake.cs</code> to ensure that the reloading logic is correctly applied. Check if the ammo inventory is being checked and if the pawn is being forced to switch to hand-to-hand combat instead of reloading. Ensure the patch is not inadvertently triggering a fallback to melee combat.
+<strong>Confidence:</strong> Medium
+<strong>Source:</strong> Trello card</p>
+<h2 id="moderate-priority">Moderate Priority</h2>
+<h3 id="issue-2-does-not-work-with-aerocraft-frameworks-guns.trello-card">Issue 2: Does not work with Aerocraft framework's guns. (<a href="https://trello.com/c/lQKfHhEX">Trello Card</a>)</h3>
+<p><strong>Priority:</strong> Moderate
+<strong>Implementation Idea:</strong> Review the compatibility with the Aerocraft framework by checking if the mod correctly identifies and patches the reloading logic for the framework's guns. Ensure that the mod's Harmony patches are applied to the Aerocraft framework's classes and that there are no conflicts or missing patches.
+<strong>Confidence:</strong> Medium
+<strong>Source:</strong> Trello card</p>
+<h3 id="issue-3-when-used-with-the-dead-mans-switch-some-weapons-lose-information.trello-card">Issue 3: When used with &quot;The Dead Man's Switch&quot;, some weapons lose information. (<a href="https://trello.com/c/LydUwCZS">Trello Card</a>)</h3>
+<p><strong>Priority:</strong> Moderate
+<strong>Implementation Idea:</strong> Examine the interaction between Yayo's Combat 3 and The Dead Man's Switch by reviewing the code that handles weapon information and patching. Ensure that the mod correctly preserves weapon information when used with The Dead Man's Switch. Check if the issue is related to specific weapon types or a general compatibility problem.
+<strong>Confidence:</strong> Medium
+<strong>Source:</strong> Trello card</p>
+<h2 id="lower-priority">Lower Priority</h2>
+<h3 id="issue-4-adds-a-couple-of-materials-trello-card">Issue 4: Adds a couple of materials (<a href="https://trello.com/c/HxRjklz8">Trello Card</a>)</h3>
+<p><strong>Priority:</strong> Low
+<strong>Implementation Idea:</strong> Investigate the materials added by the mod and determine if they are essential for its functionality. If they are not critical, consider removing or documenting them to reduce mod size and potential conflicts. If they are important, ensure they are correctly integrated and do not cause issues with other mods or the game.
+<strong>Confidence:</strong> Medium
+<strong>Source:</strong> Trello card</p>
+<h2 id="semantic-summary-suggestions-no-trello-cards">Semantic-summary suggestions (no Trello cards)</h2>
+<p>None suitable for quick wins based on the provided context.</p>
+<h2 id="deferred-work">Deferred-work</h2>
+<ul>
+<li>Investigate compatibility with other mods that may not have been reported as issues. (No Trello card)</li>
+</ul>
+<p>If none of the card-backed issues are suitable for quick wins, it may be necessary to further investigate the mod's codebase or seek more information from the mod's author or community.</p>
+
+</body>
+</html>

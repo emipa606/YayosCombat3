@@ -93,7 +93,7 @@ public static class ArmorUtility
         var num = armorPenetration;
         if (isArmor && dinfo.Weapon != null)
         {
-            if (armorThing.def.techLevel >= TechLevel.Spacer || isMechanoid)
+            if (armorThing != null && (armorThing.def.techLevel >= TechLevel.Spacer || isMechanoid))
             {
                 if (dinfo.Weapon.IsMeleeWeapon)
                 {
@@ -107,7 +107,7 @@ public static class ArmorUtility
                     num *= 0.35f;
                 }
             }
-            else if (armorThing.def.techLevel >= TechLevel.Industrial)
+            else if (armorThing != null && armorThing.def.techLevel >= TechLevel.Industrial)
             {
                 if (dinfo.Weapon.IsMeleeWeapon)
                 {
@@ -130,7 +130,12 @@ public static class ArmorUtility
         if (isArmor)
         {
             var f = damAmount * (0.2f + (armorDmg * DeflectThresholdFactor));
-            armorThing.TakeDamage(new DamageInfo(damageDef, GenMath.RoundRandom(f)));
+            armorThing?.TakeDamage(new DamageInfo(damageDef, GenMath.RoundRandom(f)));
+        }
+
+        if (armorThing == null)
+        {
+            return;
         }
 
         var armorHpPer = !isArmor

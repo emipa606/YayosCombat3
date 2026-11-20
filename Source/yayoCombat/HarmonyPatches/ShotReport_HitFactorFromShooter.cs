@@ -1,5 +1,6 @@
 using HarmonyLib;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace yayoCombat.HarmonyPatches;
@@ -34,8 +35,8 @@ public static class ShotReport_HitFactorFromShooter
             ? YayoCombatCore.baseSkill / 20f
             : pawn.skills.GetSkill(SkillDefOf.Shooting).levelInt / 20f;
 
-        var skillBoostedAccuracy = UnityEngine.Mathf.Clamp01(baseAccuracy + (skillFactor * (1f - baseAccuracy)));
-        var blendedAccuracy = UnityEngine.Mathf.Lerp(baseAccuracy, skillBoostedAccuracy, YayoCombatCore.s_accEf);
+        var skillBoostedAccuracy = Mathf.Clamp01(baseAccuracy + (skillFactor * (1f - baseAccuracy)));
+        var blendedAccuracy = Mathf.Lerp(baseAccuracy, skillBoostedAccuracy, YayoCombatCore.s_accEf);
 
         __result = ShotReport.HitFactorFromShooter(caster, distance, blendedAccuracy);
     }

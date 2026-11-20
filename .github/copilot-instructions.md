@@ -1,49 +1,124 @@
-# GitHub Copilot Instructions for Yayo's Combat 3 (Continued)
+# GitHub Copilot Instructions for Yayo's Combat 3 (Continued) Mod
+
+Welcome to the Yayo's Combat 3 (Continued) mod project! This mod aims to enhance the combat system in RimWorld, introducing a powerful armor algorithm, an ammunition system, and a realistic accuracy algorithm. Below are detailed instructions to help you contribute effectively using GitHub Copilot.
 
 ## Mod Overview and Purpose
 
-Yayo's Combat 3 (Continued) is a comprehensive overhaul of the combat system in RimWorld. It aims to provide a more realistic and immersive combat experience by introducing sophisticated mechanics such as a revamped armor algorithm and an ammunition system. This project continues the work from previous versions and updates it to be compatible with newer versions of RimWorld, specifically moving away from dependencies such as HugsLib starting from version 1.6.
+**Mod Name:** Yayo's Combat 3 (Continued)  
+**Description:**  
+Updates YAYOs mod based on the abandoned 1.3 update by Ogliss. No longer requires HugsLib since version 1.6. Introduces a comprehensive combat system with advanced armor, ammunition, and accuracy features.
 
 ## Key Features and Systems
 
-- **Comprehensive Combat Overhaul**: The mod introduces significant changes to how combat works, emphasizing the importance of weapon penetration and armor technology levels.
-- **Armor Algorithm**: High-tech armors are resistant to low-tech weapons, ensuring battles are influenced by technology level.
-- **Ammunition System**: Ranged weapons require ammunition, which is categorized by technological level and damage type (e.g., industrial explosives for flamethrowers).
-- **Loadout Customization**: Users can configure their loadout for ammunition and medicine within the drug policy framework.
-- **Realistic Accuracy Algorithm**: Shooting accuracy is tied more closely to the shooter's skill level.
-- **Configurable Options**: Players can control various aspects of the mod's behavior through options.
+1. **Advanced Armor Algorithm:** Penetration is crucial; high-tech armor is not pierced by low-tech weapons.
+2. **Ammunition System:** Ranged weapons consume ammunition. Drafted pawns and non-player combatants automatically reload empty weapons using compatible inventory ammo. Non-player pawns attempting melee with an empty ranged weapon also check for ammo; active reload jobs are not restarted. Enemies without usable ammo fall back to melee combat.
+3. **Realistic Accuracy Algorithm:** Accuracy is influenced by shooting skill level.
+4. **Increased Projectile Speed for Stunning:** Enhances combat effectiveness.
+5. **Fixed Armor Protection:** Armor now protects hands and feet when protecting arms or legs.
+6. **Compatibility:** Works with most mods; incompatible with SheathYourSword due to animation issues.
 
 ## Coding Patterns and Conventions
 
-- **Namespace Design**: Use meaningful namespaces that reflect the functionality or category of the classes within.
-- **Class Structure**: Most classes in this mod are declared as static where they encapsulate methods or functionality that can operate independently of object instances.
-- **Method Naming**: Methods are named descriptively, indicating their purpose or the action they perform.
+- **Naming Conventions:** Use descriptive and meaningful names for classes, methods, and variables.
+- **Code Structure:** Organize code into logical modules such as `HarmonyPatches`, `Utilities`, and `Defs`.
+- **Comments:** Provide clear comments explaining complex logic or changes.
 
 ## XML Integration
 
-Integration with XML files allows for customization and configuration of various properties and elements, such as:
-
-- **Defining Loadouts**: XML files are used to define available ammunition types and their attributes, ensuring clarity and ease of modification.
-- **Data Persistence**: Configuration and settings related to the mod are stored and read from XML to ensure persistence across saved games.
+- **Defs Files:** XML files define various aspects of the game, such as apparel layers, jobs, and ammo categories.
+  - Example: `ApparelLayerDefs.xml`, `Jobs.xml`, `yy_ammo_categories.xml`
+- **Harmony Patches:** Use Harmony to patch existing game methods for custom behavior.
+  - Example: Patching `CompApparelReloadable_PostExposeData` for reloading logic.
 
 ## Harmony Patching
 
-Harmony is used extensively in the mod to modify existing game logic without altering the original source code. 
-
-- **Patch Organization**: Ensure that Harmony patches are organized within static classes, with appropriate prefixes or postfixes, as is convention.
-- **Safe Patching**: Employ techniques to ensure patches do not introduce game-breaking bugs, prioritizing compatibility and stability.
+- **Prefix/Postfix:** Use Harmony's `Prefix` and `Postfix` methods to modify or extend existing game functionality.
+  - Example: `CompApparelReloadable_PostExposeData` modifies the `PostExposeData` method to handle custom reload logic.
 
 ## Suggestions for Copilot
 
-To use GitHub Copilot effectively in this modding project:
+### General Tips
 
-1. **Commenting**: Include comprehensive comments within the code to help Copilot understand context and generate more accurate suggestions.
-2. **Function Stubs**: Generate function stubs using Copilot to quickly create method signatures based on a summary of their intended functionality.
-3. **Pattern Recognition**: Leverage Copilot's ability to recognize patterns in existing code to assist in generating repetitive or boilerplate-heavy logic, such as additional weapon definitions or loadout rules.
-4. **Enhance Compatibility**: Use Copilot to suggest code that enhances mod compatibility with other popular mods, ensuring Yayo's Combat 3 works harmoniously within diverse mod lists.
-5. **Error Handling**: Seek Copilot's guidance in writing robust error-handling and logging code to aid in troubleshooting and debugging efforts.
+1. **Understand the Context:** Before using Copilot, ensure you understand the context and requirements of the code snippet you need.
+2. **Review and Test:** Always review and test generated code to ensure it meets the mod's requirements and does not introduce bugs.
 
-By leveraging these detailed instructions and suggestions, modders can harness GitHub Copilot to improve their development workflow and the mod's quality effectively.
+### Specific Recommendations
+
+1. **Harmony Patching:** When generating Harmony patches, ensure that the `Prefix` and `Postfix` methods are correctly implemented and do not interfere with the original game logic.
+2. **XML Definitions:** When generating XML definitions, ensure that they are correctly formatted and comply with RimWorld's XML schema.
+3. **Utility Methods:** When generating utility methods, ensure they are well-documented and reusable across the mod.
+
+## Example Usage
+
+### Generating a Harmony Patch
+
+**Prompt:**
+csharp
+// Harmony patch for CompApparelVerbOwner_Charged_PostPostMake
+// Modify the PostPostMake method to handle custom verb logic
+
+
+**Expected Output:**
+csharp
+using HarmonyLib;
+
+namespace yayoCombat.HarmonyPatches
+{
+    [HarmonyPatch(typeof(CompApparelVerbOwner_Charged), nameof(CompApparelVerbOwner_Charged.PostPostMake))]
+    public static class CompApparelVerbOwner_Charged_PostPostMake
+    {
+        public static void Postfix(CompApparelVerbOwner_Charged __instance)
+        {
+            // Custom verb logic here
+            // Example: Modify the verb properties or add new verbs
+        }
+    }
+}
+
+
+### Generating an XML Definition
+
+**Prompt:**
+xml
+<!-- Define a new job for custom combat behavior -->
+<JobDef>
+    <defName>Combat_Ranged</defName>
+    <label>Ranged Combat</label>
+    <description>Perform ranged combat.</description>
+    <workTags>
+        <li>WorkTag_ManualLabor</li>
+    </workTags>
+    <makeTargetPrisoner>True</makeTargetPrisoner>
+    <jobGiverClass>JobGiver_RangedCombat</jobGiverClass>
+</JobDef>
+
+
+**Expected Output:**
+xml
+<JobDef>
+    <defName>Combat_Ranged</defName>
+    <label>Ranged Combat</label>
+    <description>Perform ranged combat.</description>
+    <workTags>
+        <li>WorkTag_ManualLabor</li>
+    </workTags>
+    <makeTargetPrisoner>True</makeTargetPrisoner>
+    <jobGiverClass>JobGiver_RangedCombat</jobGiverClass>
+</JobDef>
+
+
+## Contributing to the Mod
+
+- **Code Contributions:** Submit pull requests with your code changes.
+- **Issue Reporting:** Report bugs or suggest improvements through the GitHub issues section.
+- **Documentation:** Contribute to the mod's documentation to help other developers.
+
+## Additional Resources
+
+- **Mod Documentation:** Refer to the mod's documentation for detailed information on features and implementation.
+- **Discord Channel:** Join the Discord channel for real-time support and discussions.
+
+Thank you for contributing to Yayo's Combat 3 (Continued)! Your help will greatly enhance the mod and make combat in RimWorld more realistic and engaging.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -52,3 +127,11 @@ By leveraging these detailed instructions and suggestions, modders can harness G
 - When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
 - In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
 - For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
+

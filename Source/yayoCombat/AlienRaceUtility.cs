@@ -4,7 +4,7 @@ using Verse;
 
 namespace yayoCombat;
 
-public class AlienRaceUtility
+public static class AlienRaceUtility
 {
     public static Vector2 AlienRacesPatch(Pawn pawn, Thing eq)
     {
